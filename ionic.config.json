@@ -1,0 +1,7 @@
+{
+  "name": "qrs-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
