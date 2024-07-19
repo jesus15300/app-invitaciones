@@ -17,7 +17,10 @@ export class ConfirmacionInvitacionPage implements OnInit {
   numAcompanantes: number = -1;
   showModal: boolean = false;
   public ionicForm: FormGroup;
-  isLoadingOpen: boolean = false;
+  isLoadingOpen: boolean = true;
+  isLoadingSendingOpen:boolean = false;
+
+  error:boolean = false;
   constructor(private route: ActivatedRoute, private invitacionService: InvitacionService, public formBuilder: FormBuilder, private loadingCtrl:LoadingController) { 
       this.ionicForm = this.formBuilder.group({
         acompanantesExtra: [0, Validators.required],
@@ -37,22 +40,34 @@ export class ConfirmacionInvitacionPage implements OnInit {
 
   }
   obtenerInvitado() {
-    this.invitacionService.getInvitado(this.uuid).subscribe(data => {
-      this.invitado = data;
-      console.log(data);
+    this.isLoadingOpen = true;
+    this.invitacionService.getInvitado(this.uuid).subscribe({
+      next:(r) =>{
+        this.invitado = r;
+        console.log(r);
+        this.isLoadingOpen = false;
+      },
+      error: (e) =>{
+        console.log(e);
+        this.error = true;
+        this.isLoadingOpen = false;
+
+      }
       
     });
   }
 
   confirmarAsistencia() {
-    this.isLoadingOpen = true;
+    this.isLoadingSendingOpen = true;
     this.invitacionService.confirmarAsistencia(this.uuid, this.numAcompanantes).subscribe({
       next: (r) => {
-        this.isLoadingOpen = false;
+        this.isLoadingSendingOpen = false;
         console.log("Respuesta de la api: ", r);
         location.reload();
       }, error: (e) => {
+
         console.log("Error al enviar los datos: ", e);
+        this.isLoadingSendingOpen = false;
       }
     });
   }
@@ -60,14 +75,5 @@ export class ConfirmacionInvitacionPage implements OnInit {
     console.log('ionChange fired with value: ' + e.detail.value);
     this.numAcompanantes = e.detail.value;
   }
-  cerrarModal() {
-    this.showModal = false;
-  }
-  async showLoading() {
-    const loading = await this.loadingCtrl.create({
-      message: 'Dismissing after 3 seconds...',
-    });
 
-    loading.present();
-  }
 }

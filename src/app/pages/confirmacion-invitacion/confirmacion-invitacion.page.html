@@ -3,27 +3,27 @@
     <ion-title>Confirmación de Invitación</ion-title>
   </ion-toolbar>
 </ion-header>
-
+<ion-loading trigger="open-loading" message="Cargando información..." [isOpen]="isLoadingOpen"></ion-loading>
 <ion-content *ngIf="invitado && invitado.aceptada === false" [fullscreen]="true">
-  <ion-loading trigger="open-loading" message="Enviando información..." [isOpen]="isLoadingOpen"></ion-loading>
+  <ion-loading trigger="open-loading" message="Enviando información..." [isOpen]="isLoadingSendingOpen"></ion-loading>
   <div class='container'>
       <div class="invitacion">
         <div class="header">
-          <h2>Hola, {{ invitado.nombreCompleto }}</h2>
+          <h2>Estimado(a) {{ invitado.nombreCompleto }}, {{invitado.cargo}} de {{invitado.institucion}}</h2>
           <p>Has sido invitado al 70 aniversario del Club Alpha.</p>
           <p>El evento se llevará a cabo en el [Lugar del Evento] a las [Hora del Evento].</p>
-          <p>Te esperamos para celebrar esta ocasión tan especial.</p>
+          <p>Lo esperamos para celebrar esta ocasión tan especial.</p>
         </div>
 
         <div class="content">
-          <p>Tienes {{invitado.numQrsBase +1}} pases apartados, adicionalmente puedes llevar un máximo de 5 invitados
-            extra. Por favor, indica abajo cuántos llevarás:</p>
+          <p><b>Ya cuenta con {{invitado.numQrsBase +1}} pases apartados</b>, adicionalmente puede llevar un máximo de 5 acompañantes
+            extra. Por favor, seleccione abajo cuántos acompañantes extra llevará:</p>
           <form [formGroup]="ionicForm">
             <ion-item>
-              <ion-label>Invitados adicionales</ion-label>
+              <ion-label>Acompañantes adicionales</ion-label>
               <ion-select formControlName="acompanantesExtra" placeholder="Seleccione cantidad"
                 (ionChange)="handleChange($event)">
-                <ion-select-option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{ num }}</ion-select-option>
+                <ion-select-option *ngFor="let num of [0, 1, 2, 3, 4, 5]" [value]="num">{{ num }}</ion-select-option>
               </ion-select>
             </ion-item>
           </form>
@@ -36,28 +36,37 @@
 
       </div>
     </div>
+    
 </ion-content>
 <ion-content *ngIf="invitado && invitado.aceptada === true">
-  <div class="invitacion">
-    <div class="header">
-      <h2>{{ invitado.nombreCompleto }}, ya has confirmado tu invitacion, verifica tu correo electronico para visualizar
-        las invitaciones</h2>
-
+  <div class="container">
+    <div class="invitacion">
+      <div class="header">
+        <h2>{{ invitado.nombreCompleto }}, ya has confirmado tu invitacion, verifica tu correo electronico para visualizar
+          las invitaciones</h2>
+  
+      </div>
+  
     </div>
-
   </div>
-  <div class="waveWrapper waveAnimation">
-    <div class="waveWrapperInner bgTop">
-      <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')">
-      </div>
-    </div>
-    <div class="waveWrapperInner bgMiddle">
-      <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')">
-      </div>
-    </div>
-    <div class="waveWrapperInner bgBottom">
-      <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')">
+</ion-content>
+<ion-content *ngIf="error">
+  <div class="container">
+    <div class="invitacion">
+      <div class="header">
+        <h2>Enlace no valido o expirado</h2>
       </div>
     </div>
   </div>
 </ion-content>
+<div class="waveWrapper waveAnimation">
+  <div class="waveWrapperInner bgTop">
+    <div class="wave waveTop" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgMiddle">
+    <div class="wave waveMiddle" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+  </div>
+  <div class="waveWrapperInner bgBottom">
+    <div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+  </div>
+</div>

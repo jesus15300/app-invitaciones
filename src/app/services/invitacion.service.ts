@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class InvitacionService {
 
 
-  private apiUrl = 'http://127.0.0.1:8080/';
-  //private apiUrl = 'https://xkxhds7f-8080.usw3.devtunnels.ms/';
+  //private apiUrl = 'http://127.0.0.1:8080/';
+  private apiUrl = 'https://xkxhds7f-8080.usw3.devtunnels.ms/';
 
   constructor(private http: HttpClient) { }
 
