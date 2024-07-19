@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Confirmación de Invitación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="invitado && invitado.aceptada === false" [fullscreen]="true">
+  <ion-loading trigger="open-loading" message="Enviando información..." [isOpen]="isLoadingOpen"></ion-loading>
+  <div class="invitacion">
+    <div class="header">
+      <h2>Hola, {{ invitado.nombreCompleto }}</h2>
+      <p>Has sido invitado al 70 aniversario del Club Alpha.</p>
+      <p>El evento se llevará a cabo en el [Lugar del Evento] a las [Hora del Evento].</p>
+      <p>Te esperamos para celebrar esta ocasión tan especial.</p>
+    </div>
+
+    <div class="content">
+      <p>Tienes {{invitado.numQrsBase +1}} pases apartados, adicionalmente puedes llevar un máximo de 5 invitados extra. Por favor, indica abajo cuántos llevarás:</p>
+      <form [formGroup]="ionicForm">
+        <ion-item>
+          <ion-label>Invitados adicionales</ion-label>
+          <ion-select formControlName="acompanantesExtra" placeholder="Seleccione cantidad" (ionChange)="handleChange($event)">
+            <ion-select-option *ngFor="let num of [1, 2, 3, 4, 5]" [value]="num">{{ num }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </form>
+    </div>
+    <div class="footer">
+      <ion-button expand="full" color="primary" (click)="confirmarAsistencia()" [disabled]="numAcompanantes == -1">Aceptar Invitación</ion-button>
+    </div>
+
+    
+  </div>
+</ion-content>
+<ion-content *ngIf="invitado && invitado.aceptada === true">
+  <div class="invitacion">
+    <div class="header">
+      <h2>{{ invitado.nombreCompleto }}, ya has confirmado tu invitacion, verifica tu correo electronico para visualizar las invitaciones</h2>
+      
+    </div>
+
+  </div>
+</ion-content>
+

@@ -2,12 +2,11 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'home',
-    loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
+    path: 'aceptacion-invitacion',
+    loadComponent: () => import('./pages/aceptacion-invitacion/aceptacion-invitacion.page').then( m => m.AceptacionInvitacionPage)
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
+    path: 'confirmar-invitacion',
+    loadComponent: () => import('./pages/confirmacion-invitacion/confirmacion-invitacion.page').then( m => m.ConfirmacionInvitacionPage)
   },
 ];
