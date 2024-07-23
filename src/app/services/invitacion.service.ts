@@ -10,6 +10,7 @@ export class InvitacionService {
 
   //private apiUrl = 'http://127.0.0.1:8080/';
   private apiUrl = 'https://xkxhds7f-8080.usw3.devtunnels.ms/';
+  //private apiUrl = '192.168.1.5/';
 
   constructor(private http: HttpClient) { }
 
@@ -24,5 +25,9 @@ export class InvitacionService {
     console.log(body);
     
     return this.http.post(`${this.apiUrl}invitados/confirmar-asistencia`, body, {headers});
+  }
+  getPases(uuid:string){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(`${this.apiUrl}pases/${uuid}`, {headers});
   }
 }
