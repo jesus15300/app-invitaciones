@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { IonCol, IonRow } from '@ionic/angular/standalone';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-invitacion-confirmada',
@@ -14,6 +15,7 @@ export class InvitacionConfirmadaComponent  implements OnInit {
   invitado:any = null;
   @Input()
   pases:any=null;
+  apiUrl = environment.apiUrl;
   constructor() { }
 
   ngOnInit() {}

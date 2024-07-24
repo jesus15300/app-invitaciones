@@ -9,7 +9,7 @@
     </div>
     <ion-row *ngIf="pases">
       <ion-col *ngFor="let pase of pases; let i = index" size-xs="12" sizeMd="6">
-        <img [src]="'https://xkxhds7f-8080.usw3.devtunnels.ms/pases/qr/'+pase.id" alt="Codigo qr {{i+1}}">
+        <img [src]="apiUrl+'pases/qr/'+pase.id" alt="Codigo qr {{i+1}}">
         <p>QR {{i+1}}</p>
       </ion-col>
     </ion-row>

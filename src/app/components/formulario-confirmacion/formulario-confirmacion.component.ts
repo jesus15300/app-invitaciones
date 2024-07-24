@@ -37,6 +37,9 @@ export class FormularioConfirmacionComponent  implements OnInit {
   }
   confirmarAsistencia() {
     this.isLoadingSendingOpen = true;
+    if(this.numAcompanantes == -1){
+      this.numAcompanantes = 0;
+    }
     this.invitacionService.confirmarAsistencia(this.uuid, this.numAcompanantes).subscribe({
       next: (r) => {
         this.isLoadingSendingOpen = false;

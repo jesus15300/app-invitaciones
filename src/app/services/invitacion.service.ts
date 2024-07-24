@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class InvitacionService {
 
 
   //private apiUrl = 'http://127.0.0.1:8080/';
-  private apiUrl = 'https://xkxhds7f-8080.usw3.devtunnels.ms/';
+  private apiUrl = environment.apiUrl;
   //private apiUrl = '192.168.1.5/';
 
   constructor(private http: HttpClient) { }
