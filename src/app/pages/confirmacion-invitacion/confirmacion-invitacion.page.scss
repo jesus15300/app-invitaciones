@@ -1,6 +1,8 @@
 ion-content {
+  flex: 1;
   z-index: 100;
   --background: rgba(0, 0, 0, 0);
+  
 }
 ion-header{
   z-index: 101;
@@ -9,165 +11,17 @@ ion-header{
 ion-toolbar{
   --background:rgba(255, 255, 255, 0.453);
 }
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.center {
-  margin: auto;
-
-}
-
-.invitacion {
-  max-width: 600px;
+.wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 16px;
-  /* From https://css.glass */
-  background: rgba(255, 255, 255, 0.364);
-  border-radius: 16px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-
-  color: whitesmoke;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  margin: 0px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
-  .header {
-    margin-bottom: 20px;
-
-    h2 {
-      font-size: 24px;
-      font-weight: bold;
-      color: #f3f3f3;
-    }
-
-    p {
-      font-size: 18px;
-      color: #ffffff;
-      margin: 10px 0;
-    }
-  }
-
-  .content {
-    width: 100%;
-    margin-bottom: 20px;
-
-    p {
-      font-size: 16px;
-      color: #cbcbcb;
-      margin: 10px 0;
-    }
-  }
-
-  .footer {
-    width: 100%;
-  }
+  --offset-top: var(--ion-safe-area-top);
+  --offset-bottom: var(--ion-safe-area-bottom);
+  min-height: calc(100vh - 56px);
 }
-
-.modal-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 16px;
-
-  p {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
+.content{
+  flex: 1;
 }
-
-
-@keyframes move_wave {
-  0% {
-    transform: translateX(0) translateZ(0) scaleY(1)
-  }
-
-  50% {
-    transform: translateX(-25%) translateZ(0) scaleY(0.55)
-  }
-
-  100% {
-    transform: translateX(-50%) translateZ(0) scaleY(1)
-  }
-}
-
-.waveWrapper {
-  overflow: hidden;
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  margin: auto;
-}
-
-.waveWrapperInner {
-  position: absolute;
-  width: 100%;
-  overflow: hidden;
-  height: 100%;
-  bottom: -1px;
-  background-image: linear-gradient(to top, #000dff 20%, #308aa3 80%);
-}
-
-.bgTop {
-  z-index: 15;
-  opacity: 0.5;
-}
-
-.bgMiddle {
-  z-index: 10;
-  opacity: 0.75;
-}
-
-.bgBottom {
-  z-index: 5;
-}
-
-.wave {
-  position: absolute;
-  left: 0;
-  width: 200%;
-  height: 100%;
-  background-repeat: repeat no-repeat;
-  background-position: 0 bottom;
-  transform-origin: center bottom;
-}
-
-.waveTop {
-  background-size: 50% 100px;
-}
-
-.waveAnimation .waveTop {
-  animation: move-wave 3s;
-  -webkit-animation: move-wave 3s;
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
-}
-
-.waveMiddle {
-  background-size: 50% 120px;
-}
-
-.waveAnimation .waveMiddle {
-  animation: move_wave 10s linear infinite;
-}
-
-.waveBottom {
-  background-size: 50% 100px;
-}
-
-.waveAnimation .waveBottom {
-  animation: move_wave 15s linear infinite;
+p.footer{
+  font-size: 12px;
+  color: darkgray;
 }

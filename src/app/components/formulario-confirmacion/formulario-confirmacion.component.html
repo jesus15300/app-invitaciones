@@ -1,0 +1,32 @@
+<div class='message-container'  *ngIf="invitado && invitado.aceptada === false">
+  <div class="invitacion">
+    <div class="message-header">
+      <h2>Estimado(a) {{ invitado.nombreCompleto }}, {{invitado.cargo}} de {{invitado.institucion}}</h2>
+      <p>Has sido invitado al 70 aniversario del Club Alpha.</p>
+      <p>El evento se llevará a cabo en el [Lugar del Evento] a las [Hora del Evento].</p>
+      <p>Lo esperamos para celebrar esta ocasión tan especial.</p>
+    </div>
+
+    <div class="message-content" *ngIf="invitado.opcionQR == true">
+      <p><b>Ya cuenta con {{invitado.numQrsBase +1}} pases apartados</b>, adicionalmente puede llevar un máximo de 2
+        acompañantes
+        extra. Por favor, seleccione abajo cuántos acompañantes extra llevará:</p>
+      <form [formGroup]="ionicForm">
+        <ion-item>
+          <ion-label>Acompañantes adicionales</ion-label>
+          <ion-select formControlName="acompanantesExtra" placeholder="Seleccione cantidad"
+            (ionChange)="handleOptionChange($event)">
+            <ion-select-option *ngFor="let num of [0, 1, 2]" [value]="num">{{ num }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </form>
+    </div>
+    <div class="message-footer">
+      <ion-button expand="full" color="primary" (click)="confirmarAsistencia()"
+        [disabled]="numAcompanantes == -1 && invitado.opcionQR == true">Aceptar Invitación</ion-button>
+    </div>
+
+
+  </div>
+  <ion-loading message="Enviando información..." [isOpen]="isLoadingSendingOpen"></ion-loading>
+</div>

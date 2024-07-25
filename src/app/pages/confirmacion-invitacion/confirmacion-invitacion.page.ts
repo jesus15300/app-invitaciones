@@ -1,33 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonButton, IonContent, IonHeader, IonItem, IonLabel, IonModal, IonSelectOption, IonText, IonTitle, IonToolbar, IonLoading, LoadingController } from '@ionic/angular/standalone';
+import { IonButton, IonContent, IonHeader, IonItem, IonLabel, IonModal, IonSelectOption, IonText, IonTitle, IonToolbar, IonLoading, LoadingController, IonCol, IonRow, IonFooter } from '@ionic/angular/standalone';
 import { ActivatedRoute } from '@angular/router';
 import { InvitacionService } from 'src/app/services/invitacion.service';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FondoOlasComponent } from "../../components/fondo-olas/fondo-olas.component";
+import { PaginaNoValidaComponent } from "../../components/pagina-no-valida/pagina-no-valida.component";
+import { InvitacionConfirmadaComponent } from "../../components/invitacion-confirmada/invitacion-confirmada.component";
+import { FormularioConfirmacionComponent } from "../../components/formulario-confirmacion/formulario-confirmacion.component";
 @Component({
   selector: 'app-confirmacion-invitacion',
   templateUrl: './confirmacion-invitacion.page.html',
   styleUrls: ['./confirmacion-invitacion.page.scss'],
   standalone: true,
-  imports: [IonLoading, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonModal, IonItem, IonLabel, IonSelectOption, IonText, ReactiveFormsModule, FormsModule]
+  imports: [IonFooter, IonRow, IonCol, IonLoading, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonButton, IonModal, IonItem, IonLabel, IonSelectOption, IonText, FondoOlasComponent, PaginaNoValidaComponent, InvitacionConfirmadaComponent, FormularioConfirmacionComponent]
 })
 export class ConfirmacionInvitacionPage implements OnInit {
   uuid: string = "";
   invitado: any;
-  numAcompanantes: number = -1;
-  showModal: boolean = false;
-  public ionicForm: FormGroup;
-  isLoadingOpen: boolean = true;
-  isLoadingSendingOpen:boolean = false;
-
+  pases:any = null;
   error:boolean = false;
-  constructor(private route: ActivatedRoute, private invitacionService: InvitacionService, public formBuilder: FormBuilder, private loadingCtrl:LoadingController) { 
-      this.ionicForm = this.formBuilder.group({
-        acompanantesExtra: [0, Validators.required],
-        id:[this.uuid]
-      });
-
-    }
+  isLoadingOpen: boolean = true;
+  mensajeError:string = "";
+  constructor(private route: ActivatedRoute, private invitacionService: InvitacionService, private loadingCtrl:LoadingController) { }
 
   ngOnInit() {
     
@@ -35,7 +29,6 @@ export class ConfirmacionInvitacionPage implements OnInit {
       console.log(params);
       this.uuid = params['id'];
       this.obtenerInvitado();
-
     });
 
   }
@@ -46,34 +39,39 @@ export class ConfirmacionInvitacionPage implements OnInit {
         this.invitado = r;
         console.log(r);
         this.isLoadingOpen = false;
+        this.obtenerPases();
       },
       error: (e) =>{
-        console.log(e);
+        console.log(e.error);
+        if(e.status ==  404){
+          console.log("Servidor no encontrado");
+          this.mensajeError = "Error de conexion"
+        }
         this.error = true;
         this.isLoadingOpen = false;
 
       }
       
     });
+    
+    
   }
 
-  confirmarAsistencia() {
-    this.isLoadingSendingOpen = true;
-    this.invitacionService.confirmarAsistencia(this.uuid, this.numAcompanantes).subscribe({
-      next: (r) => {
-        this.isLoadingSendingOpen = false;
-        console.log("Respuesta de la api: ", r);
-        location.reload();
-      }, error: (e) => {
+  obtenerPases(){
+    this.invitacionService.getPases(this.uuid).subscribe({
+      next:(r) =>{
+        this.pases = r;
+        console.log(r);
+      },
+      error: (e) =>{
+        console.log(e);
 
-        console.log("Error al enviar los datos: ", e);
-        this.isLoadingSendingOpen = false;
       }
+      
     });
   }
-  handleChange(e:any) {
-    console.log('ionChange fired with value: ' + e.detail.value);
-    this.numAcompanantes = e.detail.value;
-  }
+
+  
+
 
 }

@@ -2,8 +2,9 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'aceptacion-invitacion',
-    loadComponent: () => import('./pages/aceptacion-invitacion/aceptacion-invitacion.page').then( m => m.AceptacionInvitacionPage)
+    path: '',
+    pathMatch:'full',
+    redirectTo: 'confirmar-invitacion'
   },
   {
     path: 'confirmar-invitacion',

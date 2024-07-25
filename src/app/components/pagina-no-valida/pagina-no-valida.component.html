@@ -1,0 +1,8 @@
+<div class="message-container" *ngIf="error">
+  <div class="invitacion">
+    <div class="header">
+      <h2 *ngIf="mensajeError == ''">Enlace no valido o expirado</h2>
+      <h2 *ngIf="mensajeError !== ''">{{mensajeError}}, por favor vuelve a cargar la pagina</h2>
+    </div>
+  </div>
+</div>
