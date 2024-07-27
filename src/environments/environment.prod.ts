@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl:'https://xkxhds7f-8080.usw3.devtunnels.ms/'
+  apiUrl:'https://pagos.clubalpha.com.mx:9443/'
 };
