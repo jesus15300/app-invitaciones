@@ -1,5 +1,5 @@
 <div class="message-container" *ngIf="invitado && invitado.aceptada === true">
-  <div class="invitacion">
+  <div class="glass-container">
     <div class="header">
       <h2>{{invitado.nombreCompleto}}, ya has confirmado tu invitación. Verifica tu correo electrónico para
         visualizar las invitaciones.</h2>
@@ -7,7 +7,7 @@
       <h2>También podrás acceder a tus códigos QR en esta página web en cualquier momento.</h2>
       <p color="tertiary">Nota del desarrollador: Estos codigos qr solo son de pruebas.</p>
     </div>
-    <ion-row *ngIf="pases">
+    <ion-row *ngIf="pases" class="ion-justify-content-center">
       <ion-col *ngFor="let pase of pases; let i = index" size-xs="12" sizeMd="6">
         <img [src]="apiUrl+'pases/qr/'+pase.id" alt="Codigo qr {{i+1}}">
         <p>QR {{i+1}}</p>

@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Reporte de invitaciones enviadas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-text color="black">
+    <h1 style="color: white;">Reporte de invitaciones enviadas</h1>
+  </ion-text>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size-sm="12" sizeMd="8">
+        <table style="overflow: auto;" *ngIf="datos">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre completo</th>
+              <th>Aceptada</th>
+              <th>Clasificación</th>
+              <th>Tipo de pases</th>
+              <th>Opcion qr</th>
+            </tr>
+          </thead>
+          <tr *ngFor="let invitado of datos">
+            <td>{{invitado.id}}</td>
+            <td>{{invitado.nombreCompleto}}</td>
+            <td>{{booleanString(invitado.aceptada)}}</td>
+            <td>{{invitado.clasificacion}}</td>
+            <td>{{invitado.tipoPases}}</td>
+            <td>{{booleanString(invitado.opcionQR)}}</td>
+          </tr>
+        </table>
+
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+<app-fondo-olas></app-fondo-olas>

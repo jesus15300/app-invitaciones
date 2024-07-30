@@ -31,4 +31,13 @@ export class InvitacionService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get(`${this.apiUrl}pases/${uuid}`, {headers});
   }
+  getReporte(){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(`${this.apiUrl}invitados/estadisticas`, {headers});
+  }
+  getTotalInvitados(){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.get(`${this.apiUrl}invitados`, {headers});
+
+  }
 }

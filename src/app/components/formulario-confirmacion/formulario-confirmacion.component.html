@@ -1,5 +1,5 @@
 <div class='message-container'  *ngIf="invitado && invitado.aceptada === false">
-  <div class="invitacion">
+  <div class="glass-container">
     <div class="message-header">
       <h2>Estimado(a) {{ invitado.nombreCompleto }}, {{invitado.cargo}} de {{invitado.institucion}}</h2>
       <p>Has sido invitado al 70 aniversario del Club Alpha.</p>
@@ -20,6 +20,9 @@
           </ion-select>
         </ion-item>
       </form>
+    </div>
+    <div class="message-content" *ngIf="invitado.opcionQR == false">
+      <p><b>Ya cuenta con {{invitado.numQrsBase +1}} pases apartados</b>, al hacer click en el boton de abajo recibira sus pases en formato QR</p>
     </div>
     <div class="message-footer">
       <ion-button expand="full" color="primary" (click)="confirmarAsistencia()"
