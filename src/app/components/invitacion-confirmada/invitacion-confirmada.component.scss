@@ -1,4 +1,38 @@
+
 img{
     padding: 50px;
     padding-bottom: 10px;
+}
+h1{
+    margin-top: 70px;
+    font-weight: 900;
+}
+h2{
+    font-weight: 500;
+    font-size: 20px;
+}
+h3{
+    font-weight: 500;
+    font-size: 16px;
+
+}
+.text-uc{
+    text-transform: uppercase;
+}
+img.aniversario{
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    margin: 0;
+    padding: 0;
+    width: 80px;
+}
+img.j500{
+    width: 80px;
+    position: absolute;
+    
+    left: 25px;
+    top: 20px;
+    margin: 0;
+    padding: 0;
 }

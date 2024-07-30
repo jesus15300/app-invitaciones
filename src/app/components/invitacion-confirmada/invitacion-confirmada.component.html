@@ -1,5 +1,8 @@
 <div class="message-container" *ngIf="invitado && invitado.aceptada === true">
   <div class="glass-container">
+    <img class="aniversario" src="../../../assets/img/70-aniv.png" alt="">
+    <img class="j500" src="../../../assets/icon/j500.png" alt="">
+    <!--
     <div class="header">
       <h2>{{invitado.nombreCompleto}}, ya has confirmado tu invitación. Verifica tu correo electrónico para
         visualizar las invitaciones.</h2>
@@ -13,6 +16,20 @@
         <p>QR {{i+1}}</p>
       </ion-col>
     </ion-row>
-
+    -->
+    <div class="header">
+      <h1>14<sup>a</sup> CEREMONIA <br> DE PREMIACION</h1>
+      <h2 class="text-uc">{{invitado.nombreCompleto}}</h2>
+      <h3 class="text-uc" style="color: gold">{{invitado.cargo}}</h3>
+      <h3 class="text-uc">{{invitado.institucion}}</h3><br><br>
+      <h2>Pases QR</h2>
+    </div>
+    <ion-row *ngIf="pases" class="ion-justify-content-center">
+      <ion-col *ngFor="let pase of pases; let i = index" size-xs="12" sizeMd="6">
+        <img [src]="apiUrl+'pases/qr/'+pase.id" alt="Codigo qr {{i+1}}">
+        <p>QR {{i+1}}</p>
+      </ion-col>
+    </ion-row>
+    <h1 style="font-size: 16px;font-weight: 600;"><i>25 DE NOVIEMBRE | 10:30 AM</i></h1>
   </div>
 </div>

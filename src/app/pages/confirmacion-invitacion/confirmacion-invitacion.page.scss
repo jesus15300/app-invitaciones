@@ -3,13 +3,19 @@ ion-content {
   z-index: 100;
   // --background: rgba(0, 0, 0, 0);
   --background: #003384;
+  --background: none;
+  background: url('../../../assets/icon/Invitacionfondo_.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
 
 }
 // ion-header{
 //   z-index: 101;
 // }
 .img-j500{
-  background: url('/src/assets/icon/j500.png') 0 0/100% 100% no-repeat;;
+  background: url('../../../assets/icon/Invitacionfondo_.png') 0 0/100% 100% no-repeat;
 }
 ion-toolbar{
   --background: #003384;
@@ -31,3 +37,4 @@ p.footer{
   font-size: 12px;
   color: darkgray;
 }
+
