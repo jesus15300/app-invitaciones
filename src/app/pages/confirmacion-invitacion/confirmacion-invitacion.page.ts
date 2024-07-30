@@ -24,13 +24,13 @@ export class ConfirmacionInvitacionPage implements OnInit {
   constructor(private route: ActivatedRoute, private invitacionService: InvitacionService, private loadingCtrl:LoadingController) { }
 
   ngOnInit() {
-    
     this.route.queryParams.subscribe(params => {
       console.log(params);
       this.uuid = params['id'];
       this.obtenerInvitado();
     });
-
+    console.log("%c2024 Club Alpha. Desarrollado por Ing. Jesus E. Salgado L.",
+    "background-color: blue; color: #ffffff ; font-weight: bold ; padding: 4px ; font-size: 20px;");
   }
   obtenerInvitado() {
     this.isLoadingOpen = true;
@@ -49,12 +49,8 @@ export class ConfirmacionInvitacionPage implements OnInit {
         }
         this.error = true;
         this.isLoadingOpen = false;
-
       }
-      
     });
-    
-    
   }
 
   obtenerPases(){
@@ -65,13 +61,8 @@ export class ConfirmacionInvitacionPage implements OnInit {
       },
       error: (e) =>{
         console.log(e);
-
       }
-      
     });
   }
-
-  
-
 
 }

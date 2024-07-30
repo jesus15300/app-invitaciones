@@ -1,15 +1,21 @@
 ion-content {
   flex: 1;
   z-index: 100;
-  --background: rgba(0, 0, 0, 0);
-  
-}
-ion-header{
-  z-index: 101;
+  // --background: rgba(0, 0, 0, 0);
+  --background: #003384;
 
 }
+// ion-header{
+//   z-index: 101;
+// }
+.img-j500{
+  background: url('/src/assets/icon/j500.png') 0 0/100% 100% no-repeat;;
+}
 ion-toolbar{
-  --background:rgba(255, 255, 255, 0.453);
+  --background: #003384;
+  text-align: center;
+  color: white;
+  font-weight: 700;
 }
 .wrapper {
   display: flex;

@@ -17,10 +17,10 @@ export class FormularioConfirmacionComponent  implements OnInit {
   invitado:any = null;
   @Input()
   uuid:string = "";
-  
+
   numAcompanantes: number = -1;
   public ionicForm: FormGroup;
-  
+
   isLoadingSendingOpen:boolean = false;
   constructor(private formBuilder: FormBuilder, private invitacionService:InvitacionService) {
     this.ionicForm = this.formBuilder.group({
@@ -29,7 +29,10 @@ export class FormularioConfirmacionComponent  implements OnInit {
     });
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("%c2024 Club Alpha. Desarrollado por Ing. Jesus E. Salgado L.",
+    "background-color: blue; color: #ffffff ; font-weight: bold ; padding: 4px ; font-size: 20px;");
+  }
 
   handleOptionChange(e:any) {
     console.log('ionChange fired with value: ' + e.detail.value);

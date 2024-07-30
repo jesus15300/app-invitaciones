@@ -15,6 +15,9 @@ export class PaginaNoValidaComponent  implements OnInit {
   mensajeError:string = "";
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("%c2024 Club Alpha. Desarrollado por Ing. Jesus E. Salgado L.",
+    "background-color: blue; color: #ffffff ; font-weight: bold ; padding: 4px ; font-size: 20px;");
+  }
 
 }

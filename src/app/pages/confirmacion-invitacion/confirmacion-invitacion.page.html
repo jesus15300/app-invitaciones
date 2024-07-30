@@ -1,5 +1,3 @@
-
-
 <ion-loading message="Cargando información..." [isOpen]="isLoadingOpen"></ion-loading>
 <ion-header [translucent]="true">
   <ion-toolbar>
@@ -8,22 +6,17 @@
 </ion-header>
 
 <ion-content>
-  
   <div class="wrapper">
-    
     <div class="content" *ngIf="invitado && !invitado.aceptada">
       <app-formulario-confirmacion [invitado]="invitado" [uuid]="uuid"></app-formulario-confirmacion>
     </div>
     <div class="content" *ngIf="invitado && pases">
-      
       <app-invitacion-confirmada [invitado]="invitado" [pases]="pases"></app-invitacion-confirmada>
-
     </div>
     <div class="content" *ngIf="error">
       <app-pagina-no-valida [error]="error" [mensajeError]="mensajeError"></app-pagina-no-valida>
-
     </div>
-    <div class="footer">
+    <!-- <div class="footer">
       <ion-footer class="ion-text-center">
         <ion-toolbar>
           <ion-title>
@@ -31,9 +24,8 @@
           </ion-title>
         </ion-toolbar>
       </ion-footer>
-    </div>
+    </div> -->
   </div>
-
 </ion-content>
-
-<app-fondo-olas></app-fondo-olas>
+<!--
+<app-fondo-olas></app-fondo-olas> -->

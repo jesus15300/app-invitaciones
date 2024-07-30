@@ -18,6 +18,9 @@ export class InvitacionConfirmadaComponent  implements OnInit {
   apiUrl = environment.apiUrl;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("%c2024 Club Alpha. Desarrollado por Ing. Jesus E. Salgado L.",
+    "background-color: blue; color: #ffffff ; font-weight: bold ; padding: 4px ; font-size: 20px;");
+  }
 
 }
