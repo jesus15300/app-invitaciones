@@ -1,32 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonButton, IonContent, IonHeader, IonItem, IonLabel, IonModal, IonSelectOption, IonText, IonTitle, IonToolbar, IonLoading, LoadingController, IonCol, IonRow, IonFooter } from '@ionic/angular/standalone';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { InvitacionService } from 'src/app/services/invitacion.service';
 import { FondoOlasComponent } from "../../components/fondo-olas/fondo-olas.component";
 import { PaginaNoValidaComponent } from "../../components/pagina-no-valida/pagina-no-valida.component";
 import { InvitacionConfirmadaComponent } from "../../components/invitacion-confirmada/invitacion-confirmada.component";
 import { FormularioConfirmacionComponent } from "../../components/formulario-confirmacion/formulario-confirmacion.component";
+import { IInvitacion } from 'src/app/interfaces/iinvitacion';
+import { RechazoInvitacionComponent } from 'src/app/components/rechazo-invitacion/rechazo-invitacion.component';
 @Component({
   selector: 'app-confirmacion-invitacion',
   templateUrl: './confirmacion-invitacion.page.html',
   styleUrls: ['./confirmacion-invitacion.page.scss'],
   standalone: true,
-  imports: [IonFooter, IonRow, IonCol, IonLoading, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonButton, IonModal, IonItem, IonLabel, IonSelectOption, IonText, FondoOlasComponent, PaginaNoValidaComponent, InvitacionConfirmadaComponent, FormularioConfirmacionComponent]
+  imports: [IonFooter, IonRow, IonCol, IonLoading, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, IonButton, IonModal, IonItem, IonLabel, IonSelectOption, IonText, FondoOlasComponent, PaginaNoValidaComponent, InvitacionConfirmadaComponent, FormularioConfirmacionComponent, RechazoInvitacionComponent]
 })
 export class ConfirmacionInvitacionPage implements OnInit {
   uuid: string = "";
-  invitado: any;
+  tipo: string = "";
+  invitado: IInvitacion | null = null;
   pases:any = null;
   error:boolean = false;
-  isLoadingOpen: boolean = true;
+  isLoadingOpen: boolean = false;
   mensajeError:string = "";
-  constructor(private route: ActivatedRoute, private invitacionService: InvitacionService, private loadingCtrl:LoadingController) { }
+  constructor(private router:Router,private route: ActivatedRoute, private invitacionService: InvitacionService, private loadingCtrl:LoadingController) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       console.log(params);
       this.uuid = params['id'];
+      this.tipo = params['tipo'];
       this.obtenerInvitado();
     });
     console.log("%c2024 Club Alpha. Desarrollado por Ing. Jesus E. Salgado L.",
@@ -34,11 +38,21 @@ export class ConfirmacionInvitacionPage implements OnInit {
   }
   obtenerInvitado() {
     this.isLoadingOpen = true;
+    console.log('confirmar',this.uuid);
+    if(this.uuid == undefined){
+      this.isLoadingOpen = false;
+      return
+    }
     this.invitacionService.getInvitado(this.uuid).subscribe({
       next:(r) =>{
         this.invitado = r;
-        console.log(r);
+        console.log('confirma',r);
         this.isLoadingOpen = false;
+        console.log(this.tipo);
+        
+        if(this.tipo == '1'){
+          this.rechazarInvitacion();
+        }
         this.obtenerPases();
       },
       error: (e) =>{
@@ -47,7 +61,7 @@ export class ConfirmacionInvitacionPage implements OnInit {
           console.log("Servidor no encontrado");
           this.mensajeError = "Error de conexion"
         }
-        this.error = true;
+        //this.error = true;
         this.isLoadingOpen = false;
       }
     });
@@ -64,5 +78,16 @@ export class ConfirmacionInvitacionPage implements OnInit {
       }
     });
   }
-
+  rechazarInvitacion(){
+    this.invitacionService.rechazarInvitacion(this.uuid).subscribe({
+      next:(r) =>{
+        console.log(r);
+        this.isLoadingOpen = false;
+      },
+      error: (e) =>{
+        console.log(e);
+        this.isLoadingOpen = false;
+      }
+    });
+  }
 }

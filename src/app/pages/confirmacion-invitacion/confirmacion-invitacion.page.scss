@@ -2,7 +2,7 @@ ion-content {
   flex: 1;
   z-index: 100;
   // --background: rgba(0, 0, 0, 0);
-  --background: #003384;
+  --background: #003384eb;
   --background: none;
   background: url('../../../assets/icon/Invitacionfondo_.png');
   background-position: center center;
@@ -18,7 +18,7 @@ ion-content {
   background: url('../../../assets/icon/Invitacionfondo_.png') 0 0/100% 100% no-repeat;
 }
 ion-toolbar{
-  --background: #003384;
+  --background: #ffffff;
   text-align: center;
   color: white;
   font-weight: 700;

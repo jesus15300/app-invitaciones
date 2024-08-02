@@ -22,14 +22,20 @@
       <h2 class="text-uc">{{invitado.nombreCompleto}}</h2>
       <h3 class="text-uc" style="color: gold">{{invitado.cargo}}</h3>
       <h3 class="text-uc">{{invitado.institucion}}</h3><br><br>
-      <h2>Pases QR</h2>
+      <p style="color: #cbcbcb;"><b>Se enviaron los pases a tu correo</b></p>
     </div>
     <ion-row *ngIf="pases" class="ion-justify-content-center">
+
       <ion-col *ngFor="let pase of pases; let i = index" size-xs="12" sizeMd="6">
         <img [src]="apiUrl+'pases/qr/'+pase.id" alt="Codigo qr {{i+1}}">
-        <p>QR {{i+1}}</p>
+        <p *ngIf="i == 0">Pase principal</p>
+        <p *ngIf="i > 0">Pase de invitado {{i}}</p>
       </ion-col>
     </ion-row>
-    <h1 style="font-size: 16px;font-weight: 600;"><i>27 DE SEPTIEMBRE | 7:00 PM</i></h1>
+    <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>¡LE ESPERAMOS! </i></p>
+    <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>CLUB ALPHA 2 </i></p>
+    <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>27 DE SEPTIEMBRE</i></p>
+    <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>Recepción: 6:30 PM | Inicio: 7:00 PM</i></p>
+    <p style="font-size: 16px;font-weight: 600;"><i>Número de contacto: 2226625778</i></p>
   </div>
 </div>

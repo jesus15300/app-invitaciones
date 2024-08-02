@@ -4,9 +4,9 @@
     <img class="j500" src="../../../assets/icon/j500.png" alt="">
     <div class="message-header">
       <h1>Estimado(a) {{ invitado.nombreCompleto }}, {{invitado.cargo}} de {{invitado.institucion}}</h1>
-      <p>Está cordialmente invitado al evento por el 70 aniversario del Club Alpha.</p>
-      <p>El evento tendrá lugar en la duela de baloncesto del Club Alpha 2, el 27 de Septiembre a las 7:00 PM.</p>
-      <p>Lo esperamos para celebrar esta ocasión tan especial.</p>
+      <p style="margin-bottom: 30px;">Agradecemos su confirmación al evento por el 70 aniversario del Club Alpha.</p>
+      <p style="margin-bottom: 30px;">El evento tendrá lugar en el Club Alpha 2, el 27 de Septiembre a las 7:00 PM.</p>
+      <p style="">Lo esperamos para celebrar esta ocasión tan especial.</p>
     </div>
 
     <div class="message-content" *ngIf="invitado.opcionQR == true">
@@ -23,11 +23,11 @@
       </form>
     </div>
     <div class="message-content" *ngIf="invitado.opcionQR == false">
-      <p><b>Ya cuenta con {{invitado.numQrsBase +1}} pases apartados</b>, al hacer click en el botón de abajo recibirá sus pases en formato QR</p>
+      <p>Favor de hacer click en el siguiente botón para generar sus {{invitado.numQrsBase}} pases (QR), los cuales recibirá inmediatamente a su correo electrónico</p>
     </div>
     <div class="message-footer">
       <ion-button expand="full" color="primary" (click)="confirmarAsistencia()"
-        [disabled]="numAcompanantes == -1 && invitado.opcionQR == true">Aceptar Invitación</ion-button>
+        [disabled]="numAcompanantes == -1 && invitado.opcionQR == true">Generar pases</ion-button>
     </div>
 
 

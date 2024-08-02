@@ -27,6 +27,13 @@ export class InvitacionService {
     
     return this.http.post(`${this.apiUrl}invitados/confirmar-asistencia`, body, {headers});
   }
+  rechazarInvitacion(id: string): Observable<any> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const body = { id };
+    console.log(body);
+    
+    return this.http.post(`${this.apiUrl}invitados/rechazar-asistencia`, body, {headers});
+  }
   getPases(uuid:string){
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.get(`${this.apiUrl}pases/${uuid}`, {headers});
