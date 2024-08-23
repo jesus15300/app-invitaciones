@@ -1,37 +1,61 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Reporte de invitaciones enviadas</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" class="ion-padding">
-  <ion-text color="black">
-    <h1 style="color: white;">Reporte de invitaciones enviadas</h1>
+  <ion-text color="black" class="ion-text-center ion-margin">
+    <h2 style="color: white;">Reporte de invitaciones enviadas</h2>
   </ion-text>
   <ion-row class="ion-justify-content-center">
     <ion-col size-sm="12" sizeMd="8">
-        <table style="overflow: auto;" *ngIf="datos">
+      <ion-text style="color: white;">
+        <p *ngIf="datosAux">Total de elementos: {{datosAux.length}}</p>
+      </ion-text>
+      <div class="table-responsive">
+        <table class="table table-hover">
+
+              
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th><ion-select aria-label="Estado" value="Todos" (ionChange)="handleEstadoFilter($event)">
+                <ion-select-option *ngFor="let estado of tipoEstados" [value]="estado.name">{{estado.name}}</ion-select-option>
+              </ion-select></th>
+              <th>
+                <ion-select *ngIf="tipoClasificaciones.length > 1 && tipoClasificaciones.length < 15" aria-label="Clasificacion" value="Todos" (ionChange)="handleClasificacionFilter($event)">
+                  <ion-select-option *ngFor="let tipoClasificacion of tipoClasificaciones" [value]="tipoClasificacion.name">{{tipoClasificacion.name}}</ion-select-option>
+                </ion-select>
+              </th>
+              <th>
+                <ion-select aria-label="Tipo de pases" value="Todos" (ionChange)="handleInvitadoFilter($event)">
+                  <ion-select-option *ngFor="let tipoPase of tipoPases" [value]="tipoPase.name">{{tipoPase.name}}</ion-select-option>
+                </ion-select>
+              </th>
+            </tr>
+          </thead>
           <thead>
             <tr>
               <th>Id</th>
               <th>Nombre completo</th>
-              <th>Aceptada</th>
+              <th>Estado</th>
               <th>Clasificación</th>
               <th>Tipo de pases</th>
-              <th>Opcion qr</th>
             </tr>
           </thead>
-          <tr *ngFor="let invitado of datos">
-            <td>{{invitado.id}}</td>
-            <td>{{invitado.nombreCompleto}}</td>
-            <td>{{booleanString(invitado.aceptada)}}</td>
-            <td>{{invitado.clasificacion}}</td>
-            <td>{{invitado.tipoPases}}</td>
-            <td>{{booleanString(invitado.opcionQR)}}</td>
-          </tr>
+          <tbody *ngIf="datosAux">
+            
+            <tr *ngFor="let invitado of datosAux" [class]="estadoInvitacionClass(invitado)">
+              <td>{{invitado.id}}</td>
+              <td>{{invitado.nombreCompleto}}</td>
+              <td>{{estadoInvitacionString(invitado)}}</td>
+              <td>{{invitado.clasificacion}}</td>
+              <td>{{invitado.tipoPases}}</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>{{datosAux.length}}</td>
+            </tr>
+          </tbody>
         </table>
+      </div>
     </ion-col>
   </ion-row>
 
 </ion-content>
-<app-fondo-olas></app-fondo-olas>

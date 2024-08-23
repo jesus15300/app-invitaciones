@@ -40,4 +40,17 @@ export class ReportePage implements OnInit {
     else
       return 'No'
   }
+
+  convertirFecha(fecha:any) {
+    const meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+    //console.log(fecha);
+    const date = new Date(fecha);
+    const numeroMes = date.getMonth();
+    const numeroDia = date.getDate();
+
+    if(! isNaN(numeroMes) && numeroMes >= 1  && numeroMes <= 12 ) {
+      return numeroDia + " de " + meses[numeroMes] + " - " + date.getHours() + ":" + String(date.getMinutes()).padStart(2, '0') + " hrs";
+    }
+    return null;
+  }
 }

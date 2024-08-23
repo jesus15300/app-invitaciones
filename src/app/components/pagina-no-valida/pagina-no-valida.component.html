@@ -2,7 +2,8 @@
   <div class="glass-container">
     <div class="header">
       <h2 *ngIf="mensajeError == ''">Enlace no valido o expirado</h2>
-      <h2 *ngIf="mensajeError !== ''">{{mensajeError}}, por favor vuelve a cargar la pagina</h2>
+      <p *ngIf="mensajeError == ''">Por favor ingresa con el 'botón aceptar' de la invitación que recibiste en tu correo electrónico</p>
+      <h2 *ngIf="mensajeError !== ''">{{mensajeError}}</h2>
     </div>
   </div>
 </div>

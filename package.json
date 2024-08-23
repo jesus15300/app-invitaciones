@@ -29,6 +29,7 @@
     "@capacitor/status-bar": "6.0.0",
     "@ionic/angular": "^8.0.0",
     "@swimlane/ngx-charts": "^20.5.0",
+    "bootstrap": "^5.3.3",
     "d3": "^7.9.0",
     "d3-scale": "^4.0.2",
     "d3-shape": "^3.2.0",

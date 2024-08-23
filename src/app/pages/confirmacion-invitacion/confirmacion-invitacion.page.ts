@@ -39,8 +39,9 @@ export class ConfirmacionInvitacionPage implements OnInit {
   obtenerInvitado() {
     this.isLoadingOpen = true;
     console.log('confirmar',this.uuid);
-    if(this.uuid == undefined){
+    if(this.uuid == undefined || this.uuid === '' || this.tipo === undefined || this.tipo === ''){
       this.isLoadingOpen = false;
+      this.error = true;
       return
     }
     this.invitacionService.getInvitado(this.uuid).subscribe({
@@ -57,11 +58,18 @@ export class ConfirmacionInvitacionPage implements OnInit {
       },
       error: (e) =>{
         console.log(e.error);
+        this.error = true;
+        if(e.error instanceof ProgressEvent){
+          this.mensajeError = 'Error de conexión por favor intenta mas tarde'
+        }
         if(e.status ==  404){
           console.log("Servidor no encontrado");
-          this.mensajeError = "Error de conexion"
+          this.mensajeError = "Error de conexión"
         }
-        //this.error = true;
+        if(e.status ==  400){
+          console.log("Servidor no encontrado");
+          this.mensajeError = "Enlace no valido o expirado"
+        }
         this.isLoadingOpen = false;
       }
     });

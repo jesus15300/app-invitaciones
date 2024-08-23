@@ -13,7 +13,7 @@ export class StackedHorizontalChartComponent  implements OnInit {
   @Input()
   datos:any = undefined;
   multi: any[] = [];
-  view: [number, number] = [500, 200];
+  view: [number, number] = [350, 200];
 
   // options
   showXAxis: boolean = true;

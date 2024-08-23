@@ -1,7 +1,13 @@
 ion-content {
     flex: 1;
     z-index: 100;
-    --background: rgba(0, 0, 0, 0);
+    
+	--background: #003384eb;
+	--background: none;
+	background: url('../../../../assets/icon/Invitacionfondo_.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
     
   }
   ion-header{
@@ -11,11 +17,12 @@ ion-content {
   ion-toolbar{
     --background:rgba(255, 255, 255, 0.453);
   }
+
   table {
-    width: auto;
+    width: 100%;
     border-collapse: collapse;
-    overflow-x: visible;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   }
   
   th,
@@ -38,11 +45,13 @@ ion-content {
   tbody {
     tr {
       &:hover {
-        background-color: rgba(255,255,255,0.3);
+        background-color: rgba(255, 255, 255, 0.3);
       }
     }
+  
     td {
       position: relative;
+
       &:hover {
         &:before {
           content: "";
@@ -51,7 +60,7 @@ ion-content {
           right: 0;
           top: -9999px;
           bottom: -9999px;
-          background-color: rgba(255,255,255,0.2);
+          background-color: rgba(255, 255, 255, 0.2);
           z-index: -1;
         }
       }

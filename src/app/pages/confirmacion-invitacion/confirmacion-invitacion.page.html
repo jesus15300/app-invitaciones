@@ -15,7 +15,7 @@
     <div class="content" *ngIf="invitado && pases">
       <app-invitacion-confirmada [invitado]="invitado" [pases]="pases"></app-invitacion-confirmada>
     </div>
-    <div class="content" *ngIf="invitado && !invitado.aceptada">
+    <div class="content" *ngIf="error">
       <app-pagina-no-valida [error]="error" [mensajeError]="mensajeError"></app-pagina-no-valida>
     </div>
     

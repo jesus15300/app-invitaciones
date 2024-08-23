@@ -1,20 +1,28 @@
 ion-content {
-    flex: 1;
-    z-index: 100;
-    --background: rgba(0, 0, 0, 0);
-    
-  }
-  ion-header{
-    z-index: 101;
-  
-  }
-  ion-toolbar{
-    --background:rgba(255, 255, 255, 0.453);
-  }
-  
+	flex: 1;
+	z-index: 100;
+	--background: rgba(0, 0, 0, 0);
+	--background: #003384eb;
+	--background: none;
+	background: url('../../../../assets/icon/Invitacionfondo_.png');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+
+ion-header {
+	z-index: 101;
+
+}
+
+ion-toolbar {
+	--background: rgba(255, 255, 255, 0.453);
+}
+
 .container {
 	position: absolute;
-    top: 300px;
+	top: 300px;
 	left: 50%;
 	transform: translate(-50%, -50%);
 }
@@ -23,7 +31,7 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	overflow: hidden;
-	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
 th,
@@ -46,11 +54,13 @@ thead {
 tbody {
 	tr {
 		&:hover {
-			background-color: rgba(255,255,255,0.3);
+			background-color: rgba(255, 255, 255, 0.3);
 		}
 	}
+
 	td {
 		position: relative;
+
 		&:hover {
 			&:before {
 				content: "";
@@ -59,9 +69,34 @@ tbody {
 				right: 0;
 				top: -9999px;
 				bottom: -9999px;
-				background-color: rgba(255,255,255,0.2);
+				background-color: rgba(255, 255, 255, 0.2);
 				z-index: -1;
 			}
 		}
 	}
+}
+
+tr.aceptada td {
+	background-color: #43b550;
+}
+
+tr.rechazada td {
+	background-color: rgba(255, 0, 0, 0.408);
+}
+
+ion-select {
+
+	--placeholder-opacity: 1;
+	width: 100%;
+	justify-content: center;
+}
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+	flex: 0 0 auto;
+}
+
+ion-select::part(placeholder)::first-letter {
+	font-size: 24px;
+	font-weight: 500;
 }
