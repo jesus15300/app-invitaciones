@@ -41,8 +41,8 @@
           </thead>
           <tbody *ngIf="datosAux">
             
-            <tr *ngFor="let invitado of datosAux" [class]="estadoInvitacionClass(invitado)">
-              <td>{{invitado.id}}</td>
+            <tr *ngFor="let invitado of datosAux; let i = index" [class]="estadoInvitacionClass(invitado)">
+              <td>{{i+1}}</td>
               <td>{{invitado.nombreCompleto}}</td>
               <td>{{estadoInvitacionString(invitado)}}</td>
               <td>{{invitado.clasificacion}}</td>
