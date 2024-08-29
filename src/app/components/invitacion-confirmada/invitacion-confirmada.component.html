@@ -1,7 +1,9 @@
 <div class="message-container" *ngIf="invitado && invitado.aceptada === true">
   <div class="glass-container">
-    <img class="aniversario" src="../../../assets/img/70-aniv.png" alt="">
-    <img class="j500" src="../../../assets/icon/j500.png" alt="">
+    <div class="horizontal-center">
+      <img class="j500" src="../../../assets/icon/sports-plaza-logo.jfif" alt="">
+
+    </div>
     <!--
     <div class="header">
       <h2>{{invitado.nombreCompleto}}, ya has confirmado tu invitación. Verifica tu correo electrónico para
@@ -18,25 +20,24 @@
     </ion-row>
     -->
     <div class="header">
-      <h1>15<sup>a</sup> CEREMONIA <br> DE PREMIACIÓN</h1>
-      <h2 class="text-uc">{{invitado.nombreCompleto}}</h2>
+      <h1 style="color: #460c63;padding-left: 10px; padding-right: 10px;">Coctel de Inauguración de Aquadome</h1>
+      <h2 class="text-uc" style="font-weight: 800;">{{invitado.nombreCompleto}}</h2>
       <h3 class="text-uc" style="color: gold">{{invitado.cargo}}</h3>
       <h3 class="text-uc">{{invitado.institucion}}</h3><br><br>
-      <h1 style="margin-top: -25px;">Código de vestimenta formal</h1>
-      <p style="color: #cbcbcb;"><b>Se enviaron los pases a tu correo</b></p>
+      <!--<p style="color: #cbcbcb;"><b>Se enviaron los pases a tu correo</b></p>-->
     </div>
-    <ion-row *ngIf="pases" class="ion-justify-content-center">
+    <ion-row *ngIf="pases" class="ion-justify-content-center" >
 
       <ion-col *ngFor="let pase of pases; let i = index" size-xs="12" sizeMd="6">
-        <img [src]="apiUrl+'pases/qr/'+pase.id" alt="Codigo qr {{i+1}}">
+        <img [src]="apiUrl+'pases/qr/'+pase.id" alt="Codigo qr {{i+1}}" style="padding-top: 0;">
         <p *ngIf="i == 0">Pase principal</p>
         <p *ngIf="i > 0">Pase de invitado {{i}}</p>
       </ion-col>
     </ion-row>
     <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>¡LE ESPERAMOS! </i></p>
-    <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>CLUB ALPHA 2 </i></p>
-    <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>27 DE SEPTIEMBRE</i></p>
+    <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>SPORTS PLAZA</i></p>
+    <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>28 DE SEPTIEMBRE</i></p>
     <p style="font-size: 16px;font-weight: 600;margin-bottom: 0;"><i>Recepción: 6:30 PM | Inicio: 7:00 PM</i></p>
-    <p style="font-size: 16px;font-weight: 600;"><i>Número de contacto: 2226625778</i></p>
+    <!--<p style="font-size: 16px;font-weight: 600;"><i>Número de contacto: 2226625778</i></p>-->
   </div>
 </div>

@@ -4,7 +4,7 @@ ion-content {
   // --background: rgba(0, 0, 0, 0);
   --background: #003384eb;
   --background: none;
-  background: url('../../../assets/icon/Invitacionfondo_.png');
+  background: url('../../../assets/icon/fondo1.jfif');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -20,7 +20,7 @@ ion-content {
 ion-toolbar{
   --background: #ffffff;
   text-align: center;
-  color: white;
+  color: rgb(71, 71, 71);
   font-weight: 700;
 }
 .wrapper {
@@ -35,6 +35,6 @@ ion-toolbar{
 }
 p.footer{
   font-size: 12px;
-  color: darkgray;
+  color: rgb(31, 31, 31);
 }
 
