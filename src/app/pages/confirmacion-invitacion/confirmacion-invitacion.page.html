@@ -2,8 +2,8 @@
 
 
 <ion-content>
-  <div class="ion-text-center" style="font-weight: 900;font-family: asen-pro;color: aliceblue;width: 100%;margin:20px 0;"><h1 style="font-size: 26px;"><b>Confirmación de invitación</b></h1></div>
-  <div class="wrapper">
+  <!--<div class="ion-text-center" style="font-weight: 900;font-family: asen-pro;color: #60288d;width: 100%;margin:20px 0;"><h1 style="font-size: 26px;"><b>Confirmación de invitación</b></h1></div>-->
+  <div class="wrapper" style="margin-top: 60px;">
     <div class="content" *ngIf=" tipo == '0' && invitado && !invitado.aceptada && !invitado.rechazada">
       <app-formulario-confirmacion [invitado]="invitado" [uuid]="uuid"></app-formulario-confirmacion>
     </div>

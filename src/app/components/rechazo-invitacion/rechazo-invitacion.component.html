@@ -1,13 +1,15 @@
 <div class="content" *ngIf="invitado != null && !invitado.aceptada">
   <div class='message-container'  *ngIf="invitado && invitado.aceptada === false">
     <div class="glass-container">
-      <img class="aniversario" src="../../../assets/img/70-aniv.png" alt="">
-      <img class="j500" src="../../../assets/icon/j500.png" alt="">
+      <div class="horizontal-center">
+        <img class="j500" src="../../../assets/icon/sports-plaza-logo.jfif" alt="">
+  
+      </div>
       <div class="message-header">
-        <h1>Estimado(a) {{ invitado?.nombreCompleto }}, {{invitado?.cargo}} de {{invitado?.institucion}}</h1>
+        <h1>Estimado(a) {{ invitado?.nombreCompleto }}<div *ngIf="invitado.cargo" >,</div> {{invitado?.cargo}} <div *ngIf="invitado.institucion" >de</div> {{invitado?.institucion}}</h1>
         <p style="margin-bottom: 30px;">Lamentamos que no podamos contar con su presencia en nuestro evento. </p>
         <p style="margin-bottom: 30px;">Agradecemos su respuesta. </p>
-        <p style="">Para más información, contáctanos al 2226625778.</p>
+        <!--<p style="">Para más información, contáctanos al 2226625778.</p>-->
       </div>
 
     </div>

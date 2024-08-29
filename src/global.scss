@@ -70,8 +70,8 @@ body {
     -webkit-backdrop-filter: blur(9.9px);
     border: 1px solid rgba(255, 255, 255, 0.3);
 
-    color: whitesmoke;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgb(54, 50, 50);
+    border: 1px solid rgba(29, 29, 29, 0.3);
     border-radius: 10px;
     margin: 0px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -90,12 +90,12 @@ body {
         h2 {
             font-size: 24px;
             font-weight: bold;
-            color: #f3f3f3;
+            color: rgb(0, 0, 0);
         }
 
         p {
             font-size: 18px;
-            color: #ffffff;
+            color: #000000;
             margin: 10px 0;
         }
     }
@@ -106,7 +106,7 @@ body {
 
         p {
             font-size: 16px;
-            color: #cbcbcb;
+            color: #464646;
             margin: 10px 0;
         }
     }
