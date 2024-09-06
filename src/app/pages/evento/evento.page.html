@@ -1,0 +1,91 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Evento 70 Aniversario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
+  <ion-segment [(ngModel)]="selectTabs">
+    <ion-segment-button value="lista" layout="icon-start">
+      <ion-label>Lista de invitados</ion-label>
+      <ion-icon name="list"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button value="scanner" layout="icon-start">
+      <ion-label>Escaner</ion-label>
+      <ion-icon name="scan"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="selectTabs == 'lista'">
+      <ion-row class="ion-justify-content-center ion-align-items-center">
+        <ion-col size-sm="12" sizeMd="8">
+          <div class="table-container font">
+            <table style="overflow: auto;" *ngIf="datos">
+              <thead>
+                <!--tr>
+                  <th></th>
+                  <th></th>
+                  <th>Todos</th>
+                  <th>Todos</th>
+                  <th>Todos</th>
+                </tr-->
+                <tr>
+                  <th>Id</th>
+                  <th>Nombre completo</th>
+                  <th>Estado</th>
+                  <th>Clasificación</th>
+                  <th>Tipo de pases</th>
+                </tr>
+              </thead>
+              <tr *ngFor="let invitado of datos">
+                <td>{{invitado.id}}</td>
+                <td>{{invitado.nombreCompleto}}</td>
+                <td>{{estado(invitado.aceptada, invitado.rechazada)}}</td>
+                <td>{{invitado.clasificacion}}</td>
+                <td>{{invitado.tipoPases}}</td>
+              </tr>
+            </table>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-button class="button-dat">
+        <p class="header-text1 text-asw">Enviar Datos</p>
+      </ion-button>
+  </div>
+
+  <div *ngIf="selectTabs == 'scanner'">
+    <div class="instruc-text">
+      Escanee el Código QR para confirmar asistencia al evento.
+    </div>
+    <ion-button (click)="scanCode()" id="open-modal" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up">
+      <img src="../../../assets/images/scan-qr.webp" alt="scanner" class="img-boton">
+    </ion-button>
+    <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+      <ng-template>
+        <!--div class="block ion-text-center">
+          <p class="header-text1">Código QR: <span class="text-asw">--------</span></p>
+          <img src="../../../assets/images/qr.webp" alt="referencia" class="img-qr">
+          <p class="header-text1">Nombre: <span class="text-asw">Nombre Completo</span></p>
+          <p class="header-text1">Clasificación: <span class="text-asw">-------</span></p>
+          <p class="header-text1">Institución: <span class="text-asw">---------</span></p>
+          <p class="header-text1">Pase: <span class="text-asw">--------</span></p>
+          <ion-button class="button-sca">
+            <ion-label class="header-text1 text-asw">OK</ion-label>
+          </ion-button>
+        </div-->
+        <div class="block ion-text-center">
+          <p class="header-text1">Código QR: <span class="text-asw">{{ qrCode }}</span></p>
+          <img src="../../../assets/images/qr.webp" alt="referencia" class="img-qr">
+          <p class="header-text1">Nombre: <span class="text-asw">{{ scannedData?.nombreCompleto }}</span></p>
+          <p class="header-text1">Clasificación: <span class="text-asw">{{ scannedData?.clasificacion }}</span></p>
+          <p class="header-text1">Institución: <span class="text-asw">{{ scannedData?.institucion }}</span></p>
+          <p class="header-text1">Pase: <span class="text-asw">{{ scannedData?.tipoPases }}</span></p>
+          <ion-button class="button-sca">
+            <ion-label class="header-text1 text-asw">OK</ion-label>
+          </ion-button>
+        </div>
+      </ng-template>
+    </ion-modal>
+  </div>
+</ion-content>
+<app-fondo-olas></app-fondo-olas>
