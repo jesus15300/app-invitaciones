@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonItem, IonLabel, IonIcon, IonButton, IonModal, IonCol, IonText, IonRow, IonTabButton, IonAlert, IonButtons } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonItem, IonLabel, IonIcon, IonButton, IonModal, IonCol, IonText, IonRow, IonTabButton, IonAlert, IonButtons, IonSearchbar, IonList } from '@ionic/angular/standalone';
 import { FondoOlasComponent } from 'src/app/components/fondo-olas/fondo-olas.component';
 import { addIcons } from 'ionicons';
 import { list, scan } from 'ionicons/icons';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { InvitacionService } from 'src/app/services/invitacion.service';
-
+import { environment } from 'src/environments/environment.prod';
 @Component({
   selector: 'app-evento',
   templateUrl: './evento.page.html',
   styleUrls: ['./evento.page.scss'],
   standalone: true,
-  imports: [IonButtons, IonAlert, IonTabButton, IonRow, IonText, IonCol, IonModal, IonButton, IonIcon, IonLabel, IonItem, IonSegmentButton, IonSegment, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, FondoOlasComponent],
+  imports: [IonList, IonSearchbar, IonButtons, IonAlert, IonTabButton, IonRow, IonText, IonCol, IonModal, IonButton, IonIcon, IonLabel, IonItem, IonSegmentButton, IonSegment, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, FondoOlasComponent],
   providers: [BarcodeScanner]
 })
 
@@ -22,6 +22,8 @@ export class EventoPage implements OnInit {
   isLoadingOpen: boolean = false;
   selectTabs = 'lista';
   modalController: any;
+  tpase = '';
+
 
   qrCode: string = '';
   scannedData: any = null;
@@ -31,6 +33,7 @@ export class EventoPage implements OnInit {
   }
 
   ngOnInit() {
+    this.tpase = environment.invitados;
     this.invitacionService.getTotalInvitados().subscribe({
       next: (r) => {
         this.datos = r;

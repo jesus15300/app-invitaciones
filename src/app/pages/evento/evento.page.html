@@ -1,22 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Evento 70 Aniversario</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" class="ion-padding ion-text-center">
-  <ion-segment [(ngModel)]="selectTabs">
-    <ion-segment-button value="lista" layout="icon-start">
-      <ion-label>Lista de invitados</ion-label>
-      <ion-icon name="list"></ion-icon>
-    </ion-segment-button>
-    <ion-segment-button value="scanner" layout="icon-start">
-      <ion-label>Escaner</ion-label>
-      <ion-icon name="scan"></ion-icon>
-    </ion-segment-button>
-  </ion-segment>
+  <ion-text>
+    <h2 class="ion-text-center ion-margin">Check-In 70 Aniversario</h2>
+  </ion-text>
+  <div class="select">
+    <ion-segment [(ngModel)]="selectTabs">
+      <ion-segment-button value="lista" layout="icon-start">
+        <ion-label *ngIf="tpase === 'vip-esp'">Invitados VIP y Especiales</ion-label>
+        <ion-label *ngIf="tpase === 'deportistas'" >Invitados J500 Deportistas</ion-label>
+        <ion-icon name="list"></ion-icon>
+      </ion-segment-button>
+      <ion-segment-button value="scanner" layout="icon-start">
+        <ion-label>Escanear</ion-label>
+        <ion-icon name="scan"></ion-icon>
+      </ion-segment-button>
+    </ion-segment>
+    <ion-searchbar *ngIf="selectTabs === 'lista'" color="light" placeholder="Nombre del Invitado"></ion-searchbar>
+  </div>
 
-  <div *ngIf="selectTabs == 'lista'">
+  <div *ngIf="selectTabs === 'lista'">
+    
       <ion-row class="ion-justify-content-center ion-align-items-center">
         <ion-col size-sm="12" sizeMd="8">
           <div class="table-container font">
@@ -53,9 +55,9 @@
       </ion-button>
   </div>
 
-  <div *ngIf="selectTabs == 'scanner'">
+  <div *ngIf="selectTabs === 'scanner'">
     <div class="instruc-text">
-      Escanee el Código QR para confirmar asistencia al evento.
+      Escanee el código QR para confirmar la asistencia al evento.
     </div>
     <ion-button (click)="scanCode()" id="open-modal" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up">
       <img src="../../../assets/images/scan-qr.webp" alt="scanner" class="img-boton">
