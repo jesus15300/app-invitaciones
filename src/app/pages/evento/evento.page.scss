@@ -54,23 +54,20 @@ ion-label, ion-icon {
 }
 /*------------------------LECTOR QR------------------------------*/
 .instruc-text {
-    font-weight: 500;
-    font-size: 35px;
-    font-family: 'Asen Pro', sans-serif;
-    color: aliceblue;
-    width: 100%;
-    margin: 20px 0;
-}
-.header-text1 {
-    font-weight: 500;
-    font-size: 30px;
-    font-family: 'Asen Pro', sans-serif;
-    color: aliceblue;
-    width: 100%;
-    margin: 20px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 25px;
+  font-family: 'Asen Pro', sans-serif;
+  color: white;
+  width: 60%;
+  margin: 20px auto;
 }
 .text-asw {
     font-weight: bold;
+}
+.img{
+  width: 80%;
+  height: 100%;
 }
 ion-button {
     --width: 150px;
@@ -78,39 +75,71 @@ ion-button {
     --background: rgba(0, 0, 0, 0);
 }
 ion-modal {
-    --width: 325px;
-    --height: 600px;
-    --background:rgba(0, 0, 0, 0.925);
+  h1{
+    font-size: 45px;
+    color: #EFB810;
+    font-family: 'asent-pro';
+    font-weight: 600;
+    margin: 20px auto;
+    text-align: center;
+  }
+  h2{
+    font-size: 45px;
+    color: white;
+    font-family: 'asent-pro';
+    font-weight: 800;
+    margin: 20px auto;
+    text-align: center;
+  }
+  .header-text1 {
+    font-weight: 600;
+    font-size: px;
+    font-family: 'Asen Pro', sans-serif;
+    color: white;
+    width: 100%;
+    margin: 20px 0;
+  }
+  .header-text2 {
+    font-weight: 60 0;
+    font-size: 30px;
+    font-family: 'Asen Pro', sans-serif;
+    color: white;
+    width: 100%;
+    margin: 20px 0;
+  }
+    // --width: 325px;
+    // --height: 600px;
+    // --background:rgba(0, 0, 0, 0.925);
 }
 @media (min-width: 600px) {
-    ion-button {
-        --width: 250px;
-        --height: 250px;
-        --background: rgba(0, 0, 0, 0);
-    }
-    ion-modal {
-        --width: 600px;
-        --height: 900px;
-        --background:rgba(0, 0, 0, 0.925);
-    }
+    // ion-button {
+    //     --width: 250px;
+    //     --height: 250px;
+    //     --background: rgba(0, 0, 0, 0);
+    // }
+    // ion-modal {
+    //     --width: 600px;
+    //     --height: 900px;
+    //     --background:rgba(0, 0, 0, 0.925);
+    // }
 }
 @media (min-width: 1024px) {
-    ion-button {
-        --width: 300px;
-        --height: 300px;
-        --background: rgba(0, 0, 0, 0);
-    }
-    ion-modal {
-        --width: 600px;
-        --height: 600px;
-        --background:rgba(0, 0, 0, 0.925);
-    }
+    // ion-button {
+    //     --width: 300px;
+    //     --height: 300px;
+    //     --background: rgba(0, 0, 0, 0);
+    // }
+    // ion-modal {
+    //     --width: 600px;
+    //     --height: 600px;
+    //     --background:rgba(0, 0, 0, 0.925);
+    // }
 }
-ion-button {
-    width: var(--width);
-    height: var(--height);
-    --background: rgba(0, 0, 0, 0);
-}
+// ion-button {
+//     width: var(--width);
+//     height: var(--height);
+//     --background: rgba(0, 0, 0, 0);
+// }
 .img-boton {
     width: auto;
     height: auto;
@@ -188,7 +217,7 @@ tbody {
     .font {
       font-size: 20px;
     }
-}  
+}
 @media (min-width: 1024px) {
     .font {
       font-size: 22.5px;

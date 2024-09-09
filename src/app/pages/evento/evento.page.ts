@@ -28,7 +28,7 @@ export class EventoPage implements OnInit {
   qrCode: string = '';
   scannedData: any = null;
 
-  constructor(private barcodeScanner: BarcodeScanner, private invitacionService: InvitacionService) { 
+  constructor(private barcodeScanner: BarcodeScanner, private invitacionService: InvitacionService) {
     addIcons({ list, scan});
   }
 
@@ -80,7 +80,7 @@ export class EventoPage implements OnInit {
       console.log('Error', err);
     });
   }
-  
+
   //Filtro de Datos en la Lista de invitados
   /*public alertButtons = ['OK'];
   public alertInputs = [

@@ -6,7 +6,7 @@
     <ion-segment [(ngModel)]="selectTabs">
       <ion-segment-button value="lista" layout="icon-start">
         <ion-label *ngIf="tpase === 'vip-esp'">Invitados VIP y Especiales</ion-label>
-        <ion-label *ngIf="tpase === 'deportistas'" >Invitados J500 Deportistas</ion-label>
+        <ion-label *ngIf="tpase === 'deportistas'">Invitados J500 Deportistas</ion-label>
         <ion-icon name="list"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="scanner" layout="icon-start">
@@ -18,7 +18,7 @@
   </div>
 
   <div *ngIf="selectTabs === 'lista'">
-    
+
       <ion-row class="ion-justify-content-center ion-align-items-center">
         <ion-col size-sm="12" sizeMd="8">
           <div class="table-container font">
@@ -57,35 +57,36 @@
 
   <div *ngIf="selectTabs === 'scanner'">
     <div class="instruc-text">
-      Escanee el código QR para confirmar la asistencia al evento.
+      Da click en la imagen para escanear el código QR para confirmar la asistencia al evento.
     </div>
-    <ion-button (click)="scanCode()" id="open-modal" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up">
-      <img src="../../../assets/images/scan-qr.webp" alt="scanner" class="img-boton">
+    <ion-button (click)="scanCode()" id="open-modal" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up img">
+      <img src="../../../assets/img/qr.svg" alt="scanner" class="img-boton">
     </ion-button>
-    <ion-modal trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <!-- <h2 class="text">Escanea</h2> -->
+    <ion-modal #modal trigger="open-modal">
       <ng-template>
-        <!--div class="block ion-text-center">
-          <p class="header-text1">Código QR: <span class="text-asw">--------</span></p>
-          <img src="../../../assets/images/qr.webp" alt="referencia" class="img-qr">
-          <p class="header-text1">Nombre: <span class="text-asw">Nombre Completo</span></p>
-          <p class="header-text1">Clasificación: <span class="text-asw">-------</span></p>
-          <p class="header-text1">Institución: <span class="text-asw">---------</span></p>
-          <p class="header-text1">Pase: <span class="text-asw">--------</span></p>
-          <ion-button class="button-sca">
-            <ion-label class="header-text1 text-asw">OK</ion-label>
-          </ion-button>
-        </div-->
-        <div class="block ion-text-center">
-          <p class="header-text1">Código QR: <span class="text-asw">{{ qrCode }}</span></p>
-          <img src="../../../assets/images/qr.webp" alt="referencia" class="img-qr">
-          <p class="header-text1">Nombre: <span class="text-asw">{{ scannedData?.nombreCompleto }}</span></p>
-          <p class="header-text1">Clasificación: <span class="text-asw">{{ scannedData?.clasificacion }}</span></p>
-          <p class="header-text1">Institución: <span class="text-asw">{{ scannedData?.institucion }}</span></p>
-          <p class="header-text1">Pase: <span class="text-asw">{{ scannedData?.tipoPases }}</span></p>
-          <ion-button class="button-sca">
-            <ion-label class="header-text1 text-asw">OK</ion-label>
-          </ion-button>
-        </div>
+        <ion-content>
+          <!-- <ion-toolbar class="tool-modal">
+            <ion-title>Modal</ion-title>
+            <ion-buttons slot="end">
+              <ion-button color="" (click)="modal.dismiss()">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar> -->
+          <h1>Bienvenido!</h1>
+          <h2>Pedro Sebastian Tellez Miranda{{ scannedData?.nombreCompleto }}</h2>
+          <div class="block ion-text-center">
+            <!-- <p class="header-text1">Código QR: <span class="text-asw">{{ qrCode }}</span></p>
+            <img src="../../../assets/images/qr.webp" alt="referencia" class="img-qr"> -->
+            <!-- <p class="header-text1">Nombre: <span class="text-asw"></span></p> -->
+            <p class="header-text1">Invitado  VIP{{ scannedData?.tipoPases }}</p>
+            <p class="header-text2">Supervisor de Programacion{{ scannedData?.institucion }}</p>
+            <!-- <p class="header-text1">Institución: <span class="text-asw">{{ scannedData?.institucion }}</span></p> -->
+            <!-- <p class="header-text1">Pase: <span class="text-asw">{{ scannedData?.tipoPases }}</span></p> -->
+            <ion-button class="button-sca">
+              <ion-label class="header-text1 text-asw">OK</ion-label>
+            </ion-button>
+          </div>
+        </ion-content>
       </ng-template>
     </ion-modal>
   </div>
