@@ -1,4 +1,4 @@
-ion-content {
+ion-content.content {
     flex: 1;
     z-index: 100;
     --background: none;
@@ -11,60 +11,51 @@ ion-content {
         font-weight: 800;
         font-family: 'asent-pro';
     }
+    .logos{ display: flex;
+      .logop{
+        width: 25%;
+        margin: 20px auto;
+      }
+    }
 }
 .select{
     margin: 10px auto;
     width: 90%;
 }
 ion-segment{
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    width: auto;
-    height: 60px;
-    background: #EFB810;
-    border-radius: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: auto;
+  height: 60px;
+  background: #EFB810;
+  border-radius: 20px;
 }
 
-ion-segment-button::part(indicator-background) {
-    background: #3e1262;
-}
+ion-segment-button::part(indicator-background) { background: #3e1262; }
 ion-segment-button.md::part(native) {
     color: #3e1262;
     font-weight: 600;
 }
-.segment-button-checked.md::part(native) {
-    color: white;
-}
-ion-segment-button.md::part(indicator-background) {
-    height: 4px;
-}
+.segment-button-checked.md::part(native) { color: white; }
+ion-segment-button.md::part(indicator-background) { height: 4px; }
 ion-segment-button.ios::part(native) {
-    color: #3e1262;
-    font-weight: 600;
+  color: #3e1262;
+  font-weight: 600;
 }
-.segment-button-checked.ios::part(native) {
-    color: white;
-}
-ion-segment-button.ios::part(indicator-background) {
-    border-radius: 20px;
-}
-ion-label, ion-icon {
-    font-size: 21px;
-}
+.segment-button-checked.ios::part(native) { color: white; }
+ion-segment-button.ios::part(indicator-background) { border-radius: 20px; }
+
 /*------------------------LECTOR QR------------------------------*/
 .instruc-text {
-  text-align: center;
   font-weight: 600;
-  font-size: 25px;
   font-family: 'Asen Pro', sans-serif;
   color: white;
-  width: 60%;
   margin: 20px auto;
+  width: 90%;
 }
-.text-asw {
-    font-weight: bold;
-}
+.text-asw { font-weight: bold; }
+
 .img{
   width: 80%;
   height: 100%;
@@ -74,9 +65,20 @@ ion-button {
     --height: 150px;
     --background: rgba(0, 0, 0, 0);
 }
-ion-modal {
+ion-modal.datos {
+  .wrapper{
+    flex: 1;
+    z-index: 100;
+    --background: none;
+    background-size: 100% 100%;
+    background-position: 0px 0px,0px 0px,0px 0px,0px 0px,0px 0px,0px 0px,0px 0px;
+    background-image: radial-gradient(75% 75% at 135% 30%, #17001DFF 0%, #43005300 82%),radial-gradient(75% 75% at 91% 41%, #430053 0%, #43005300 100%),radial-gradient(60% 50% at 108% 71%, #FFFFFF99 1%, #C902FF00 95%),linear-gradient(53deg, #110011DB 0%, #4C228700 42%),radial-gradient(75% 75% at 86% 89%, #751B94FF 0%, #11001100 100%),linear-gradient(44deg, #4c2287 0%, #4c2287 100%);
+  }
+  .logo-j500{
+    margin: 20px auto;
+    text-align: center;
+  }
   h1{
-    font-size: 45px;
     color: #EFB810;
     font-family: 'asent-pro';
     font-weight: 600;
@@ -84,62 +86,72 @@ ion-modal {
     text-align: center;
   }
   h2{
-    font-size: 45px;
     color: white;
     font-family: 'asent-pro';
     font-weight: 800;
-    margin: 20px auto;
+    margin: 35px auto;
     text-align: center;
+    font-style: italic;
   }
   .header-text1 {
     font-weight: 600;
-    font-size: px;
-    font-family: 'Asen Pro', sans-serif;
+    font-family: 'asent-pro';
     color: white;
     width: 100%;
     margin: 20px 0;
+    font-style: italic;
   }
   .header-text2 {
-    font-weight: 60 0;
-    font-size: 30px;
-    font-family: 'Asen Pro', sans-serif;
+    font-weight: 600;
+    font-family: 'asent-pro';
     color: white;
     width: 100%;
-    margin: 20px 0;
+    margin: 20px auto;
   }
-    // --width: 325px;
-    // --height: 600px;
-    // --background:rgba(0, 0, 0, 0.925);
+  .lj-modal{ width: 40%; }
+  .btns{
+    .btn-confirmar{
+      width: auto;
+      height: auto;
+      background: #EFB810;
+      font-family: 'Asen Pro', sans-serif;
+      color: white;
+      margin: 20px 30px;
+      font-weight: 600;
+      border-radius: 10px;
+      --background-activated: #f6cf59;
+      --background-focused: #f6cf59;
+    }
+    .btn-cancel{
+      width: auto;
+      height: auto;
+      background: #e70000;
+      font-family: 'Asen Pro', sans-serif;
+      color: white;
+      margin: 20px 30px;
+      font-weight: 600;
+      border-radius: 10px;
+      --background-activated: #db4242;
+      --background-focused: #db4242;
+    }
+  }
 }
-@media (min-width: 600px) {
-    // ion-button {
-    //     --width: 250px;
-    //     --height: 250px;
-    //     --background: rgba(0, 0, 0, 0);
-    // }
-    // ion-modal {
-    //     --width: 600px;
-    //     --height: 900px;
-    //     --background:rgba(0, 0, 0, 0.925);
-    // }
+
+ion-modal#modal-datos {
+  --width: 90%;
+  --min-width: 250px;
+  --height: auto;
+  --border-radius: 6px;
+  --margin: autio;
 }
-@media (min-width: 1024px) {
-    // ion-button {
-    //     --width: 300px;
-    //     --height: 300px;
-    //     --background: rgba(0, 0, 0, 0);
-    // }
-    // ion-modal {
-    //     --width: 600px;
-    //     --height: 600px;
-    //     --background:rgba(0, 0, 0, 0.925);
-    // }
+
+.tag { font-size: 18px; }
+
+ion-button {
+    width: var(--width);
+    height: var(--height);
+    --background: rgba(0, 0, 0, 0);
 }
-// ion-button {
-//     width: var(--width);
-//     height: var(--height);
-//     --background: rgba(0, 0, 0, 0);
-// }
 .img-boton {
     width: auto;
     height: auto;
@@ -160,35 +172,31 @@ ion-modal {
     height: auto;
 }
 /*------------------------LISTA DE INVITADOS------------------------------*/
-ion-header {
-    z-index: 101;
-}
+ion-header { z-index: 101; }
 
 table {
-    width: 100%;
+  width: 100%;
 	border-collapse: collapse;
 	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
+
 th, td {
-    padding: 15px;
+  padding: 15px;
 	background-color: rgba(99, 99, 99, 0.359);
 	color: #fff;
 }
-th {
-    text-align: left;
-}
+th { text-align: left; }
 thead {
 	th {
 		background-color: #EFB810;
-        text-align: center;
+    text-align: center;
 	}
 }
+
 tbody {
 	tr {
-		&:hover {
-			background-color: rgba(255,255,255,0.3);
-		}
+		&:hover {	background-color: rgba(255,255,255,0.3); }
 	}
 	td {
 		position: relative;
@@ -210,21 +218,53 @@ tbody {
     display: flex;
     justify-content: center;
 }
-.font {
-    font-size: 20px;
-}
-@media (min-width: 600px) {
-    .font {
-      font-size: 20px;
-    }
-}
-@media (min-width: 1024px) {
-    .font {
-      font-size: 22.5px;
-    }
-}
+
 .button-dat {
     width: 225px;
     height: 60px;
     --background: #308aa3;
+}
+ //MEDIA QUERY
+ @media (min-width: 280px){
+  h1{
+    font-size: 40px;
+  }
+  h2{
+    font-size: 40px;
+  }
+  .header-text1 {
+    font-size: 27px;
+  }
+  .header-text2 {
+    font-size: 28px;
+  }
+  .btn-confirmar, .btn-cancel{
+    font-size: 15px;
+  }
+  .instruc-text {
+    text-align: justify;
+    font-size: 23px;
+  }
+}
+
+@media (min-width: 600px) {
+  h1{
+    font-size: 60px;
+  }
+  h2{
+    font-size: 50px;
+  }
+  .header-text1 {
+    font-size: 47px;
+  }
+  .header-text2 {
+    font-size: 48px;
+  }
+  .btn-confirmar, .btn-cancel{
+    font-size: 25px;
+  }
+  .instruc-text {
+    text-align: center;
+    font-size: 35px;
+  }
 }
