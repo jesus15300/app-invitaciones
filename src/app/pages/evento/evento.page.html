@@ -1,16 +1,18 @@
-<ion-content [fullscreen]="true" class="ion-padding ion-text-center">
-  <ion-text>
-    <h2 class="ion-text-center ion-margin">Check-In 70 Aniversario</h2>
-  </ion-text>
+<ion-content [fullscreen]="true" class="ion-padding ion-text-center content">
+  <div class="logos">
+    <div class="logop"><img class="lj-modal" src="../../../assets/img/Asset5.png"></div>
+    <div class="logop"><img class="lj-modal" src="../../../assets/img/70-aniv.png"></div>
+  </div>
+
   <div class="select">
     <ion-segment [(ngModel)]="selectTabs">
       <ion-segment-button value="lista" layout="icon-start">
-        <ion-label *ngIf="tpase === 'vip-esp'">Invitados VIP y Especiales</ion-label>
-        <ion-label *ngIf="tpase === 'deportistas'">Invitados J500 Deportistas</ion-label>
+        <ion-label class="tag" *ngIf="tpase === 'vip-esp'">VIP y Especiales</ion-label>
+        <ion-label class="tag" *ngIf="tpase === 'deportistas'">J500 Deportistas</ion-label>
         <ion-icon name="list"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="scanner" layout="icon-start">
-        <ion-label>Escanear</ion-label>
+        <ion-label class="tag">Escanear</ion-label>
         <ion-icon name="scan"></ion-icon>
       </ion-segment-button>
     </ion-segment>
@@ -18,19 +20,11 @@
   </div>
 
   <div *ngIf="selectTabs === 'lista'">
-
       <ion-row class="ion-justify-content-center ion-align-items-center">
         <ion-col size-sm="12" sizeMd="8">
           <div class="table-container font">
             <table style="overflow: auto;" *ngIf="datos">
               <thead>
-                <!--tr>
-                  <th></th>
-                  <th></th>
-                  <th>Todos</th>
-                  <th>Todos</th>
-                  <th>Todos</th>
-                </tr-->
                 <tr>
                   <th>Id</th>
                   <th>Nombre completo</th>
@@ -56,39 +50,30 @@
   </div>
 
   <div *ngIf="selectTabs === 'scanner'">
-    <div class="instruc-text">
-      Da click en la imagen para escanear el código QR para confirmar la asistencia al evento.
-    </div>
-    <ion-button  id="open-modal" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up img">
+    <div class="instruc-text">Da click en la imagen para escanear el código QR para confirmar la asistencia al evento.</div>
+    <ion-button  id="open-custom-dialog" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up img">
       <img src="../../../assets/img/qr.svg" alt="scanner" class="img-boton">
     </ion-button>
-    <!-- <h2 class="text">Escanea</h2> -->
-    <ion-modal #modal trigger="open-modal">
+    <ion-modal class="datos" id="modal-datos" #modal trigger="open-custom-dialog">
       <ng-template>
-        <ion-content>
-          <!-- <ion-toolbar class="tool-modal">
-            <ion-title>Modal</ion-title>
-            <ion-buttons slot="end">
-              <ion-button color="" (click)="modal.dismiss()">Close</ion-button>
-            </ion-buttons>
-          </ion-toolbar> -->
-          <h1>Bienvenido!</h1>
+        <div class="wrapper">
+          <div class="logo-j500"><img class="lj-modal" src="../../../assets/img/Asset5.png"></div>
+          <h1>¡Bienvenido!</h1>
           <h2>Pedro Sebastian Tellez Miranda{{ scannedData?.nombreCompleto }}</h2>
           <div class="block ion-text-center">
-            <!-- <p class="header-text1">Código QR: <span class="text-asw">{{ qrCode }}</span></p>
-            <img src="../../../assets/images/qr.webp" alt="referencia" class="img-qr"> -->
-            <!-- <p class="header-text1">Nombre: <span class="text-asw"></span></p> -->
             <p class="header-text1">Invitado  VIP{{ scannedData?.tipoPases }}</p>
             <p class="header-text2">Supervisor de Programacion{{ scannedData?.institucion }}</p>
-            <!-- <p class="header-text1">Institución: <span class="text-asw">{{ scannedData?.institucion }}</span></p> -->
-            <!-- <p class="header-text1">Pase: <span class="text-asw">{{ scannedData?.tipoPases }}</span></p> -->
-            <ion-button class="button-sca">
-              <ion-label class="header-text1 text-asw">OK</ion-label>
-            </ion-button>
+            <div class="btns">
+              <ion-button class="btn-confirmar">
+                <ion-label class="label-btn">Check-In</ion-label>
+              </ion-button>
+              <ion-button class="btn-cancel">
+                <ion-label class="label-btn">Cancelar</ion-label>
+              </ion-button>
+            </div>
           </div>
-        </ion-content>
+        </div>
       </ng-template>
     </ion-modal>
   </div>
 </ion-content>
-<app-fondo-olas></app-fondo-olas>
