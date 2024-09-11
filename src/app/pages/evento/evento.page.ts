@@ -3,13 +3,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonItem, IonLabel, IonIcon, IonButton, IonModal, IonCol, IonText, IonRow, IonTabButton, IonAlert, IonButtons, IonSearchbar, IonList, IonLoading } from '@ionic/angular/standalone';
-import { FondoOlasComponent } from 'src/app/components/fondo-olas/fondo-olas.component';
 import { addIcons } from 'ionicons';
-import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
 import { checkbox, list, scan } from 'ionicons/icons';
-
 import { InvitacionService } from 'src/app/services/invitacion.service';
 import { environment } from 'src/environments/environment.prod';
+
 @Component({
   selector: 'app-evento',
   templateUrl: './evento.page.html',
@@ -26,7 +24,6 @@ export class EventoPage implements OnInit {
   selectTabs = 'lista';
   modalController: any;
   tpase = '';
-  barcodes: Barcode[] = [];
 
 
   qrCode: string = '';
@@ -85,7 +82,7 @@ export class EventoPage implements OnInit {
         this.scannedData = r;
         console.log(this.scannedData);
         this.isLoadingOpen = false
-        
+
       },
       error: (e)=>{
         if(e.status === 404){
@@ -103,42 +100,31 @@ export class EventoPage implements OnInit {
   }
   onSearchChange(event:any){
     console.log(event.target.value);
-    
-  }
-  //Método para lector QR
-  // scanCode() {
-  //   this.barcodeScanner.scan().then(barcodeData => {
-  //     console.log('Barcode data', barcodeData);
-  //     this.qrCode = barcodeData.text;
-  //     this.scannedData = this.datos.find((item: { qrCode: string; }) => item.qrCode === this.qrCode);
 
-  //     if(this.scannedData){
-  //       console.log('Datos Escaneados: ', this.scannedData);
-  //     } else{
-  //       console.log('No se encontraron datos para el codigo QR escaneado');
+  }
+  // cargarQR() {
+  //   const opciones = {
+  //     preferFrontCamera: false, // iOS and Android
+  //     showFlipCameraButton: false, // iOS and Android
+  //     showTorchButton: false, // iOS and Android
+  //     torchOn: false, // Android, launch with the torch switched on (if available)
+  //     saveHistory: true, // Android, save scan history (default false)
+  //     prompt: "Escanea un QR de Pases J500", // Android
+  //     resultDisplayDuration: 0, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+  //     orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+  //     disableAnimations: false, // iOS
+  //     disableSuccessBeep: false // iOS and Android
+  //   };
+  //   this.barcodeScanner.scan(opciones).then(barcodeData => {
+  //     const codigo = barcodeData.text.split("-");
+  //     if (codigo[0] === 'PESAJE') {
+  //       // this.rutinasService.activarBascula(Number(codigo[1]), Number(this.tokenService.getUserName())).subscribe(data => {
+  //       //   console.log('Envió de pesaje: ', data);
+  //       // });
   //     }
+  //     console.log('Barcode data', barcodeData);
   //   }).catch(err => {
   //     console.log('Error', err);
   //   });
   // }
-
-  //Filtro de Datos en la Lista de invitados
-  /*public alertButtons = ['OK'];
-  public alertInputs = [
-    {
-      label: 'Red',
-      type: 'radio',
-      value: 'red',
-    },
-    {
-      label: 'Blue',
-      type: 'radio',
-      value: 'blue',
-    },
-    {
-      label: 'Green',
-      type: 'radio',
-      value: 'green',
-    },
-  ];*/
 }

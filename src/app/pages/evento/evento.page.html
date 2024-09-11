@@ -72,7 +72,7 @@
 
   <div *ngIf="selectTabs === 'scanner'">
     <div class="instruc-text">Da click en la imagen para escanear el código QR para confirmar la asistencia al evento.</div>
-    <ion-button  id="modal-c" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up img">
+    <ion-button  id="cargarQR()" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up img">
       <img src="../../../assets/img/qr.svg" alt="scanner" class="img-boton">
     </ion-button>
     <ion-modal class="datos" id="modal-datos" #modal trigger="modal-datos">
@@ -103,6 +103,22 @@
     <div class="wrapper">
       <div class="img-mcheck"><img class="img-check" src="../../../assets/img/check-in.svg"></div>
       <h2>¡Bienvenido al Evento!</h2>
+      <div class="btns">
+        <ion-button (click)="modalc.dismiss()" class="btn-aceptar">
+          <ion-label class="label-btn">Aceptar</ion-label>
+        </ion-button>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+
+<!-- MODAL DE ERROR -->
+<ion-modal class="merror" id="modal-e" #modale trigger="modal-e">
+  <ng-template>
+    <div class="wrapper">
+      <div class="img-merror"><img class="img-error" src="../../../assets/img/error.svg"></div>
+      <h2>¡ERROR!</h2>
+      <p class="header-text2">El QR ya no es valido{{ scannedData?.institucion }}</p>
       <div class="btns">
         <ion-button (click)="modalc.dismiss()" class="btn-aceptar">
           <ion-label class="label-btn">Aceptar</ion-label>
