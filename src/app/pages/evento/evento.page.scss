@@ -27,7 +27,7 @@ ion-segment{
   top: 0;
   z-index: 100;
   width: auto;
-  height: 60px;
+  height: 25%;
   background: #EFB810;
   border-radius: 20px;
 }
@@ -139,8 +139,7 @@ ion-modal.datos {
 
 ion-modal#modal-datos {
   --width: 90%;
-  --min-width: 250px;
-  --height: auto;
+  --height: auto !important;
   --border-radius: 6px;
   --margin: autio;
 }
@@ -170,6 +169,53 @@ ion-button {
 .button-tod{
     width: auto;
     height: auto;
+}
+
+//-------------- Modal de Confirmacion-------------
+ion-modal#modal-c {
+  --width: 90%;
+  --height: auto !important;
+  --border-radius: 6px;
+  --margin: autio;
+}
+ion-modal.mcheck {
+  .wrapper{
+    flex: 1;
+    z-index: 100;
+    --background: none;
+    background-size: 100% 100%;
+    background-position: 0px 0px,0px 0px,0px 0px,0px 0px,0px 0px,0px 0px,0px 0px;
+    background: #EFB810;
+  }
+  h2{
+    text-align: center;
+    margin: 15px auto;
+    color: white;
+    font-weight: 600;
+    font-family: 'Asen Pro', sans-serif;
+  }
+  .img-mcheck{
+    margin: 50px auto 20px auto;
+    text-align: center;
+  }
+  .img-check{ width: 85%; }
+  .btns{
+    display: flex;
+    align-items: center;
+    .btn-aceptar{
+      width: auto;
+      height: auto;
+      background: #3e1262;
+      font-family: 'Asen Pro', sans-serif;
+      color: white;
+      margin: 20px auto;
+      font-weight: 600;
+      border-radius: 10px;
+      --background-activated: #3e1262;
+      --background-focused: #3b3144;
+      text-align: center;
+    }
+  }
 }
 /*------------------------LISTA DE INVITADOS------------------------------*/
 ion-header { z-index: 101; }
@@ -224,7 +270,7 @@ tbody {
     height: 60px;
     --background: #308aa3;
 }
- //MEDIA QUERY
+ //MEDIA QUERYS
  @media (min-width: 280px){
   h1{
     font-size: 40px;
@@ -238,11 +284,11 @@ tbody {
   .header-text2 {
     font-size: 28px;
   }
-  .btn-confirmar, .btn-cancel{
+  .btn-confirmar, .btn-cancel, .btn-aceptar{
     font-size: 15px;
   }
   .instruc-text {
-    text-align: justify;
+    text-align: center;
     font-size: 23px;
   }
 }
@@ -260,7 +306,7 @@ tbody {
   .header-text2 {
     font-size: 48px;
   }
-  .btn-confirmar, .btn-cancel{
+  .btn-confirmar, .btn-cancel, .btn-aceptar{
     font-size: 25px;
   }
   .instruc-text {
@@ -268,3 +314,33 @@ tbody {
     font-size: 35px;
   }
 }
+
+@media (min-width: 1000px) {
+  h1{
+    font-size: 60px;
+  }
+  h2{
+    font-size: 50px;
+  }
+  .header-text1 {
+    font-size: 47px;
+  }
+  .header-text2 {
+    font-size: 48px;
+  }
+  .btn-confirmar, .btn-cancel, .btn-aceptar{
+    font-size: 25px;
+  }
+  .instruc-text {
+    text-align: center;
+    font-size: 35px;
+  }
+  ion-modal#modal-datos {
+    --width: 40%;
+    --min-width: 250px;
+    --height: auto;
+    --border-radius: 6px;
+    --margin: autio;
+  }
+}
+
