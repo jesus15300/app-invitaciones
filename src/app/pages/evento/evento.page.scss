@@ -212,7 +212,7 @@ ion-modal.mcheck {
       font-weight: 600;
       border-radius: 10px;
       --background-activated: #3e1262;
-      --background-focused: #3b3144;
+      --background-focused: #3e1262;
       text-align: center;
     }
   }
@@ -339,6 +339,12 @@ tbody {
     --width: 40%;
     --min-width: 250px;
     --height: auto;
+    --border-radius: 6px;
+    --margin: autio;
+  }
+  ion-modal#modal-c {
+    --width: 40%;
+    --height: auto !important;
     --border-radius: 6px;
     --margin: autio;
   }

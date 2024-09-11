@@ -98,13 +98,13 @@
     </ion-modal>
 
     <!-- MODAL DE CONFIRMACION -->
-<ion-modal class="mcheck" id="modal-c" #modal trigger="modal-c">
+<ion-modal class="mcheck" id="modal-c" #modalc trigger="modal-c">
   <ng-template>
     <div class="wrapper">
       <div class="img-mcheck"><img class="img-check" src="../../../assets/img/check-in.svg"></div>
       <h2>¡Bienvenido al Evento!</h2>
       <div class="btns">
-        <ion-button class="btn-aceptar">
+        <ion-button (click)="modalc.dismiss()" class="btn-aceptar">
           <ion-label class="label-btn">Aceptar</ion-label>
         </ion-button>
       </div>
