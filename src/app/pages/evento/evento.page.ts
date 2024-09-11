@@ -1,11 +1,12 @@
+import { CheckinService } from './../../services/checkin.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonItem, IonLabel, IonIcon, IonButton, IonModal, IonCol, IonText, IonRow, IonTabButton, IonAlert, IonButtons, IonSearchbar, IonList } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonSegment, IonSegmentButton, IonItem, IonLabel, IonIcon, IonButton, IonModal, IonCol, IonText, IonRow, IonTabButton, IonAlert, IonButtons, IonSearchbar, IonList, IonLoading } from '@ionic/angular/standalone';
 import { FondoOlasComponent } from 'src/app/components/fondo-olas/fondo-olas.component';
 import { addIcons } from 'ionicons';
 import { Barcode, BarcodeScanner } from '@capacitor-mlkit/barcode-scanning';
-import { list, scan } from 'ionicons/icons';
+import { checkbox, list, scan } from 'ionicons/icons';
 
 import { InvitacionService } from 'src/app/services/invitacion.service';
 import { environment } from 'src/environments/environment.prod';
@@ -14,13 +15,14 @@ import { environment } from 'src/environments/environment.prod';
   templateUrl: './evento.page.html',
   styleUrls: ['./evento.page.scss'],
   standalone: true,
-  imports: [IonList, IonSearchbar, IonButtons, IonAlert, IonTabButton, IonRow, IonText, IonCol, IonModal, IonButton, IonIcon, IonLabel, IonItem, IonSegmentButton, IonSegment, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, FondoOlasComponent],
+  imports: [IonList, IonSearchbar, IonLoading, IonSearchbar, IonButtons, IonAlert, IonTabButton, IonRow, IonText, IonCol, IonModal, IonButton, IonIcon, IonLabel, IonItem, IonSegmentButton, IonSegment, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
   providers: []
 })
 
 export class EventoPage implements OnInit {
   datos: any = undefined;
   isLoadingOpen: boolean = false;
+  mensajeError:String = "";
   selectTabs = 'lista';
   modalController: any;
   tpase = '';
@@ -30,13 +32,20 @@ export class EventoPage implements OnInit {
   qrCode: string = '';
   scannedData: any = null;
 
-  constructor( private invitacionService: InvitacionService) {
-    addIcons({ list, scan});
+  constructor( private invitacionService: InvitacionService, private checkinService:CheckinService) {
+    addIcons({ list, scan, checkbox});
   }
 
   ngOnInit() {
     this.tpase = environment.invitados;
-    this.invitacionService.getTotalInvitados().subscribe({
+    this.isLoadingOpen = true;
+    this.ObtenerInvitados();
+    console.log("%c2024 Club Alpha. Desarrollado por Ing. Jesus E. Salgado L.",
+      "background-color: blue; color: #ffffff ; font-weight: bold ; padding: 4px ; font-size: 20px;");
+  }
+
+  private ObtenerInvitados() {
+    this.checkinService.getListaInvitadosCheckin().subscribe({
       next: (r) => {
         this.datos = r;
         console.log(r);
@@ -48,10 +57,9 @@ export class EventoPage implements OnInit {
           console.log("Servidor no encontrado");
         }
         this.isLoadingOpen = false;
+
       }
     });
-    console.log("%c2024 Club Alpha. Desarrollado por Ing. Jesus E. Salgado L.",
-      "background-color: blue; color: #ffffff ; font-weight: bold ; padding: 4px ; font-size: 20px;");
   }
 
   estado(acep: boolean, rech: boolean): string {
@@ -66,6 +74,37 @@ export class EventoPage implements OnInit {
     }
   }
 
+  onCheckinManualClick(invitadoId:String, idPase:Number){
+    this.openModal();
+    this.scannedData = null;
+    this.isLoadingOpen = true;
+    this.mensajeError = "";
+
+    this.checkinService.getInvitadoCheckin(invitadoId, idPase).subscribe({
+      next: (r) =>{
+        this.scannedData = r;
+        console.log(this.scannedData);
+        this.isLoadingOpen = false
+        
+      },
+      error: (e)=>{
+        if(e.status === 404){
+          console.log("error de servidor");
+          this.mensajeError = e.error.mensaje;
+        }
+        this.isLoadingOpen = false;
+      }
+    })
+  }
+  async openModal(){
+    const modalElement = document.querySelector('ion-modal#modal-lista');
+
+    if(modalElement) await (modalElement as any).present();
+  }
+  onSearchChange(event:any){
+    console.log(event.target.value);
+    
+  }
   //Método para lector QR
   // scanCode() {
   //   this.barcodeScanner.scan().then(barcodeData => {

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, timeout } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 export class CheckinService {
 
     private apiUrl = environment.apiUrl;
-
+    private tiempoEspera = () => timeout(3000);
     constructor(private http: HttpClient) { }
   
     getInvitadoCheckin(idInvitado: String, idPase:Number | null): Observable<any> {
@@ -19,11 +19,11 @@ export class CheckinService {
       if(idPase == null){
           return this.http.get(`${this.apiUrl}api/checkin/informacion/${idInvitado}`, {headers});
       }
-      return this.http.get(`${this.apiUrl}api/checkin/informacion/${idInvitado}?idPase=${idPase}`, {headers});
+      return this.http.get(`${this.apiUrl}api/checkin/informacion/${idInvitado}?idPase=${idPase}`, {headers}).pipe(this.tiempoEspera());
     }
     getListaInvitadosCheckin(){
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      return this.http.get(`${this.apiUrl}api/checkin/lista-invitados`, {headers});
+      return this.http.get(`${this.apiUrl}api/checkin/lista-invitados`, {headers}).pipe(this.tiempoEspera());
   
     }
 }

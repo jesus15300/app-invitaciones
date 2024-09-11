@@ -1,3 +1,4 @@
+<ion-loading message="Cargando información..." [isOpen]="isLoadingOpen"></ion-loading>
 <ion-content [fullscreen]="true" class="ion-padding ion-text-center content">
   <div class="logos">
     <div class="logop"><img class="lj-modal" src="../../../assets/img/Asset5.png"></div>
@@ -16,7 +17,7 @@
         <ion-icon name="scan"></ion-icon>
       </ion-segment-button>
     </ion-segment>
-    <ion-searchbar *ngIf="selectTabs === 'lista'" color="light" placeholder="Nombre del Invitado"></ion-searchbar>
+    <ion-searchbar *ngIf="selectTabs === 'lista'" color="light" placeholder="Nombre del Invitado" (input)="onSearchChange($event)"></ion-searchbar>
   </div>
 
   <div *ngIf="selectTabs === 'lista'">
@@ -26,27 +27,47 @@
             <table style="overflow: auto;" *ngIf="datos">
               <thead>
                 <tr>
-                  <th>Id</th>
                   <th>Nombre completo</th>
-                  <th>Estado</th>
-                  <th>Clasificación</th>
                   <th>Tipo de pases</th>
+                  <th>Check-in restantes</th>
+                  <th>Realizar checkin manual</th>
                 </tr>
               </thead>
               <tr *ngFor="let invitado of datos">
-                <td>{{invitado.id}}</td>
-                <td>{{invitado.nombreCompleto}}</td>
-                <td>{{estado(invitado.aceptada, invitado.rechazada)}}</td>
-                <td>{{invitado.clasificacion}}</td>
-                <td>{{invitado.tipoPases}}</td>
+                <td>{{invitado.nombrecompleto}}</td>
+                <td>{{invitado.tipopases}}</td>
+                <td>{{invitado.checkinsrestantes}}</td>
+                <td>
+                  <ion-button (click)="onCheckinManualClick(invitado.id, invitado.id_pase_principal)">
+                    <ion-icon slot="icon-only" name="checkbox"></ion-icon>
+                  </ion-button>
+                </td>
               </tr>
             </table>
           </div>
         </ion-col>
       </ion-row>
-      <ion-button class="button-dat">
-        <p class="header-text1 text-asw">Enviar Datos</p>
-      </ion-button>
+      <ion-modal class="datos" id="modal-lista" trigger="open-custom-dialog">
+        <ng-template>
+          <div class="wrapper">
+            <div class="logo-j500"><img class="lj-modal" src="../../../assets/img/Asset5.png"></div>
+            <h1>¡Bienvenido!</h1>
+            <h2>{{ scannedData?.invitado.nombreCompleto }}</h2>
+            <div class="block ion-text-center">
+              <p class="header-text1">{{ scannedData?.invitado.tipoPases }}</p>
+              <p class="header-text2">{{ scannedData?.invitado.institucion }}</p>
+              <div class="btns">
+                <ion-button class="btn-confirmar">
+                  <ion-label class="label-btn">Check-In</ion-label>
+                </ion-button>
+                <ion-button class="btn-cancel">
+                  <ion-label class="label-btn">Cancelar</ion-label>
+                </ion-button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ion-modal>
   </div>
 
   <div *ngIf="selectTabs === 'scanner'">
