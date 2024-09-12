@@ -26,4 +26,13 @@ export class CheckinService {
       return this.http.get(`${this.apiUrl}api/checkin/lista-invitados`, {headers}).pipe(this.tiempoEspera());
   
     }
+    postCheckin(idInvitado: String, idPase:Number | null){
+      const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+      const body = {
+        uuidInvitado: idInvitado,
+        paseId: idPase
+      }
+      console.log(body);
+      return this.http.post(`${this.apiUrl}api/checkin`, body, {headers}).pipe(this.tiempoEspera());
+    }
 }

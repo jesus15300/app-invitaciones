@@ -324,8 +324,25 @@ tbody {
     height: 60px;
     --background: #308aa3;
 }
- //MEDIA QUERYS
- @media (min-width: 280px){
+.button-check {
+  width: 60px;
+  height: 60px;
+  --background: #efb710;
+}
+.button ion-icon{
+  height: 100%;
+  --ionicon-stroke-width: 56px;
+}
+.font{
+  font-size: 10px;
+}
+.row-checks-full{
+  background: #00ff15ad;
+}
+ @media (min-width: 325px){
+  .font{
+    font-size: 12px;
+  }
   h1{
     font-size: 40px;
   }
@@ -348,6 +365,9 @@ tbody {
 }
 
 @media (min-width: 600px) {
+  .font{
+    font-size: 16px;
+  }
   h1{
     font-size: 60px;
   }
