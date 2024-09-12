@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 export class CheckinService {
 
     private apiUrl = environment.apiUrl;
-    private tiempoEspera = () => timeout(3000);
+    private tiempoEspera = () => timeout(5000);
     constructor(private http: HttpClient) { }
   
     getInvitadoCheckin(idInvitado: String, idPase:Number | null): Observable<any> {

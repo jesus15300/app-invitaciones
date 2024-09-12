@@ -222,6 +222,7 @@ export class EventoPage implements OnInit {
   onSegmentChange(event:any){
     console.log(event.detail.value);
     if(event.detail.value == 'lista'){
+      this.currentSearchText = "";
       this.ObtenerInvitados();
     }
   }
