@@ -6,10 +6,9 @@
   </div>
 
   <div class="select">
-    <ion-segment [(ngModel)]="selectTabs">
+    <ion-segment [(ngModel)]="selectTabs" (ionChange)="onSegmentChange($event)">
       <ion-segment-button value="lista" layout="icon-start">
-        <ion-label class="tag" *ngIf="tpase === 'vip-esp'">VIP y Especiales</ion-label>
-        <ion-label class="tag" *ngIf="tpase === 'deportistas'">J500 Deportistas</ion-label>
+        <ion-label class="tag">Lista</ion-label>
         <ion-icon name="list"></ion-icon>
       </ion-segment-button>
       <ion-segment-button value="scanner" layout="icon-start">
@@ -48,7 +47,7 @@
           </div>
         </ion-col>
       </ion-row>
-      <ion-modal class="datos" id="modal-lista" trigger="open-custom-dialog">
+      <ion-modal class="datos" id="modal-lista">
         <ng-template>
           <div class="wrapper">
             <div class="logo-j500"><img class="lj-modal" src="../../../assets/img/Asset5.png"></div>
@@ -73,7 +72,7 @@
 
   <div *ngIf="selectTabs === 'scanner'">
     <div class="instruc-text">Da click en la imagen para escanear el código QR para confirmar la asistencia al evento.</div>
-    <ion-button (click)="openModal('modal-datos')" id="modal-datos" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up img">
+    <ion-button (click)="openModal('modal-lector')" id="modal-datos" class="ion-padding-sm ion-padding-md-up ion-padding-lg-up img">
       <img src="../../../assets/img/qr.svg" alt="scanner" class="img-boton">
     </ion-button>
 
@@ -135,5 +134,23 @@
     [isOpen]="isToastTableOpen"
     message="Actualizando Tabla"
   ></ion-toast>
+  <!-- MODAL Lector -->
+<ion-modal class="datos" id="modal-lector" #modallector>
+  <ng-template>
+    <div class="wrapper">
+      <zxing-scanner (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
+      <div class="btns">
+        <ion-button class="btn-confirmar" (click)="modallector.dismiss()">
+          <ion-label class="label-btn">Cerrar</ion-label>
+        </ion-button>
+      </div>
+    </div>
+  </ng-template>
+  </ion-modal>
+  <ion-toast
+      [isOpen]="isToastTableOpen"
+      message="Actualizando Tabla"
+    ></ion-toast>
+
 </ion-content>
 

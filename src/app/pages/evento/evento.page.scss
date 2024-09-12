@@ -277,7 +277,6 @@ ion-header { z-index: 101; }
 table {
   width: 100%;
 	border-collapse: collapse;
-	overflow: hidden;
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
 
@@ -416,6 +415,13 @@ tbody {
     --margin: auto;
   }
   ion-modal#modal-c, ion-modal#modal-e {
+    --width: 40%;
+    --height: auto;
+    --border-radius: 6px;
+    --margin: auto;
+  }
+  
+  ion-modal#modal-lector, ion-modal#modal-lector {
     --width: 40%;
     --height: auto;
     --border-radius: 6px;

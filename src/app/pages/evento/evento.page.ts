@@ -8,13 +8,14 @@ import { checkbox, checkmarkCircleOutline, list, scan } from 'ionicons/icons';
 import { InvitacionService } from 'src/app/services/invitacion.service';
 import { environment } from 'src/environments/environment.prod';
 import { ActivatedRoute, Route } from '@angular/router';
+import { ZXingScannerModule } from '@zxing/ngx-scanner';
 
 @Component({
   selector: 'app-evento',
   templateUrl: './evento.page.html',
   styleUrls: ['./evento.page.scss'],
   standalone: true,
-  imports: [IonList, IonSearchbar, IonToast, IonLoading, IonSearchbar, IonButtons, IonAlert, IonTabButton, IonRow, IonText, IonCol, IonModal, IonButton, IonIcon, IonLabel, IonItem, IonSegmentButton, IonSegment, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
+  imports: [IonList, ZXingScannerModule, IonSearchbar, IonToast, IonLoading, IonSearchbar, IonButtons, IonAlert, IonTabButton, IonRow, IonText, IonCol, IonModal, IonButton, IonIcon, IonLabel, IonItem, IonSegmentButton, IonSegment, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule],
   providers: []
 })
 
@@ -23,6 +24,7 @@ export class EventoPage implements OnInit {
   datosAux:any = undefined;
   isLoadingOpen: boolean = false;
   isToastTableOpen:boolean = false;
+  currentSearchText = "";
   mensajeError:String = "";
   selectTabs = 'lista';
   tipoLista:any = undefined;
@@ -39,7 +41,7 @@ export class EventoPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
+      console.log('parametros: ',params);
       this.tipoLista = params['tipo-lista'];
       this.isLoadingOpen = true;
     this.ObtenerInvitados();
@@ -58,19 +60,26 @@ export class EventoPage implements OnInit {
     this.checkinService.getListaInvitadosCheckin().subscribe({
       next: (r) => {
         this.datos = r;
-        this.datos = this.datos.filter((dato:any) => dato.tipopases != "Vip");
+        //this.datos = this.datos.filter((dato:any) => dato.tipopases != "Vip");
 
         if(this.tipoLista == 'vip'){
           this.datos = this.datos.filter((dato:any) => dato.tipopases == "VIP" || dato.tipopases == "Inv. Especial");
         }
-        else if(this.tipoLista = 'j500'){
+        else if(this.tipoLista == 'j500'){
           this.datos = this.datos.filter((dato:any) => dato.tipopases == "J500");
+        }
+        else if(this.tipoLista == 'internos'){
+          this.datos = this.datos.filter((dato:any) => dato.tipopases == "Vip");
         }
         else{
           this.datos = null;
         }
+
         /* Lo guardamos en la variable auxiliar */
         this.datosAux = this.datos;
+        if(this.currentSearchText !== ""){
+          this.datosAux = this.datos.filter((dato:any) => dato.nombrecompleto.toLowerCase().includes(this.currentSearchText))
+        }
         //console.log(r);
         this.isLoadingOpen = false;
         this.isToastTableOpen = false;
@@ -104,27 +113,7 @@ export class EventoPage implements OnInit {
     this.mensajeError = "";
     this.ObtenerInvitados();
 
-    this.checkinService.getInvitadoCheckin(invitadoId, idPase).subscribe({
-      next: (r) =>{
-        this.scannedData = r;
-        //console.log(this.scannedData);
-        this.isLoadingOpen = false
-        this.openModal("modal-datos");
-        
-      },
-      error: (e)=>{
-        if(e.status === 404){
-          console.log("error de servidor");
-          this.mensajeError = e.error.mensaje;
-        }
-        if(e.error.mensaje){
-          console.log("mensaje del servidor", e.error.mensaje);
-          this.mensajeError = e.error.mensaje;
-        }
-        this.openModal("modal-e");
-        this.isLoadingOpen = false;
-      }
-    })
+    this.getInvitadoCheckin(invitadoId, idPase);
   }
   async openModal(id:any){
     const modalElement = document.querySelector('ion-modal#'+id);
@@ -137,13 +126,13 @@ export class EventoPage implements OnInit {
     if(modalElement) await (modalElement as any).dismiss();
   }
   onSearchChange(event:any){
-    const text = event.target.value.toLowerCase();
+    this.currentSearchText = event.target.value.toLowerCase();
     //console.log(text);
-    if(text == "") {
+    if(this.currentSearchText == "") {
       this.datosAux = this.datos;
       return;
     }
-    this.datosAux = this.datos.filter((dato:any) => dato.nombrecompleto.toLowerCase().includes(text))
+    this.datosAux = this.datos.filter((dato:any) => dato.nombrecompleto.toLowerCase().includes(this.currentSearchText))
   }
   realizarCheckin(){
     //console.log(this.scannedData);
@@ -184,6 +173,57 @@ export class EventoPage implements OnInit {
   onClear(){
     this.datosAux = this.datos;
       return;
+  }
+  scanSuccessHandler(evento:any){
+    
+    console.log(evento);
+    this.closeModal("modal-lector");
+    let uuid = "";
+    let idPase = -1;
+    if(evento.includes(';')){
+      uuid = evento.split(';')[0];
+      idPase = evento.split(';')[1];
+    }
+    if(uuid == ""){
+      console.log('qr no valido');
+      this.mensajeError = "qr no valido: " + evento;
+      this.openModal("modal-e");
+      return;
+    }
+    this.scannedData = null;
+    this.isLoadingOpen = true;
+    this.mensajeError = "";
+    this.getInvitadoCheckin(uuid, idPase);
+  }
+  private getInvitadoCheckin(uuid: String, idPase: Number) {
+    this.checkinService.getInvitadoCheckin(uuid, idPase).subscribe({
+      next: (r) => {
+        this.scannedData = r;
+        //console.log(this.scannedData);
+        this.isLoadingOpen = false;
+        this.openModal("modal-datos");
+
+      },
+      error: (e) => {
+        if (e.status === 404) {
+          console.log("error de servidor");
+          this.mensajeError = e.error.mensaje;
+        }
+        if (e.error.mensaje) {
+          console.log("mensaje del servidor", e.error.mensaje);
+          this.mensajeError = e.error.mensaje;
+        }
+        this.openModal("modal-e");
+        this.isLoadingOpen = false;
+      }
+    });
+  }
+
+  onSegmentChange(event:any){
+    console.log(event.detail.value);
+    if(event.detail.value == 'lista'){
+      this.ObtenerInvitados();
+    }
   }
   // cargarQR() {
   //   const opciones = {
