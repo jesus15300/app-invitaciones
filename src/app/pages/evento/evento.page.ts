@@ -45,9 +45,14 @@ export class EventoPage implements OnInit {
       this.tipoLista = params['tipo-lista'];
       this.isLoadingOpen = true;
     this.ObtenerInvitados();
+    var interval = setInterval(() => {
+      console.log("Set interval");
+      
+      this.ObtenerInvitados();
+    }, 20000);
     });
     this.isLoadingOpen = true;
-    this.ObtenerInvitados();
+    
     console.log("%c2024 Club Alpha. Desarrollado por Ing. Jesus E. Salgado L.",
       "background-color: blue; color: #ffffff ; font-weight: bold ; padding: 4px ; font-size: 20px;");
   }
@@ -107,7 +112,7 @@ export class EventoPage implements OnInit {
     }
   }
 
-  async onCheckinManualClick(invitadoId:String, idPase:Number){
+  async onCheckinManualClick(invitadoId:String, idPase:Number | null){
     this.scannedData = null;
     this.isLoadingOpen = true;
     this.mensajeError = "";
@@ -172,6 +177,7 @@ export class EventoPage implements OnInit {
 
   onClear(){
     this.datosAux = this.datos;
+    this.currentSearchText = "";
       return;
   }
   scanSuccessHandler(evento:any){
@@ -195,7 +201,7 @@ export class EventoPage implements OnInit {
     this.mensajeError = "";
     this.getInvitadoCheckin(uuid, idPase);
   }
-  private getInvitadoCheckin(uuid: String, idPase: Number) {
+  private getInvitadoCheckin(uuid: String, idPase: Number | null) {
     this.checkinService.getInvitadoCheckin(uuid, idPase).subscribe({
       next: (r) => {
         this.scannedData = r;
@@ -226,29 +232,5 @@ export class EventoPage implements OnInit {
       this.ObtenerInvitados();
     }
   }
-  // cargarQR() {
-  //   const opciones = {
-  //     preferFrontCamera: false, // iOS and Android
-  //     showFlipCameraButton: false, // iOS and Android
-  //     showTorchButton: false, // iOS and Android
-  //     torchOn: false, // Android, launch with the torch switched on (if available)
-  //     saveHistory: true, // Android, save scan history (default false)
-  //     prompt: "Escanea un QR de Pases J500", // Android
-  //     resultDisplayDuration: 0, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-  //     orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-  //     disableAnimations: false, // iOS
-  //     disableSuccessBeep: false // iOS and Android
-  //   };
-  //   this.barcodeScanner.scan(opciones).then(barcodeData => {
-  //     const codigo = barcodeData.text.split("-");
-  //     if (codigo[0] === 'PESAJE') {
-  //       // this.rutinasService.activarBascula(Number(codigo[1]), Number(this.tokenService.getUserName())).subscribe(data => {
-  //       //   console.log('Envió de pesaje: ', data);
-  //       // });
-  //     }
-  //     console.log('Barcode data', barcodeData);
-  //   }).catch(err => {
-  //     console.log('Error', err);
-  //   });
-  // }
+
 }
