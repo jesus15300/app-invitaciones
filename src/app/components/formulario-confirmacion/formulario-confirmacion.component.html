@@ -4,7 +4,7 @@
     <img class="j500" src="../../../assets/icon/j500.png" alt="">
     <div class="message-header">
       <h1>Estimado(a) {{ invitado.nombreCompleto }}</h1>
-      <h2>{{invitado.cargo}} de {{invitado.institucion}}</h2>
+      <h2>{{invitado.cargo}} <div *ngIf="invitado.institucion" > de </div> {{invitado.institucion}}</h2>
       <p style="margin-bottom: 30px;">Agradecemos su confirmación al evento por el 70 aniversario del Club Alpha.</p>
       <p style="margin-bottom: 30px;">El evento tendrá lugar en el Club Alpha 2, el 27 de Septiembre a las 7:00 PM.</p>
       <p style="">Lo esperamos para celebrar esta ocasión tan especial.</p>

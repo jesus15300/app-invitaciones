@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment.prod';
 export class CheckinService {
 
     private apiUrl = environment.apiUrl;
-    private tiempoEspera = () => timeout(5000);
+    private tiempoEspera = () => timeout(3000);
     constructor(private http: HttpClient) { }
   
     getInvitadoCheckin(idInvitado: String, idPase:Number | null): Observable<any> {
@@ -17,7 +17,7 @@ export class CheckinService {
       const body = { uuidInvitado: idInvitado, paseId: idPase };
       console.log(body);
       if(idPase == null){
-          return this.http.get(`${this.apiUrl}api/checkin/informacion/${idInvitado}`, {headers});
+          return this.http.get(`${this.apiUrl}api/checkin/informacion/${idInvitado}`, {headers}).pipe(this.tiempoEspera());
       }
       return this.http.get(`${this.apiUrl}api/checkin/informacion/${idInvitado}?idPase=${idPase}`, {headers}).pipe(this.tiempoEspera());
     }
