@@ -76,6 +76,9 @@ export class EventoPage implements OnInit {
         else if(this.tipoLista == 'internos'){
           this.datos = this.datos.filter((dato:any) => dato.tipopases == "Vip");
         }
+        else if(this.tipoLista == 'general'){
+          this.datos = this.datos.filter((dato:any) => dato.tipopases != "Vip");
+        }
         else{
           this.datos = null;
         }
