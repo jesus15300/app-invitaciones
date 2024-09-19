@@ -88,8 +88,8 @@
           <p class="header-text1">Invitado {{ scannedData?.invitado.tipoPases }}</p>
           <p class="header-text2">{{ scannedData?.invitado.institucion }}</p>
           <div class="btns">
-            <ion-button class="btn-confirmar">
-              <ion-label (click)="realizarCheckin()" class="label-btn">Check-In</ion-label>
+            <ion-button  (click)="realizarCheckin()" class="btn-confirmar">
+              <ion-label class="label-btn">Check-In</ion-label>
             </ion-button>
             <ion-button id="modal-datos" (click)="modal.dismiss()" class="btn-cancel">
               <ion-label class="label-btn">Cancelar</ion-label>
