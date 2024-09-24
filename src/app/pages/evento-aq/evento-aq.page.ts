@@ -66,14 +66,11 @@ export class EventoAqPage implements OnInit {
         this.datos = r;
         //this.datos = this.datos.filter((dato:any) => dato.tipopases != "Vip");
 
-        if(this.tipoLista == 'vip'){
-          this.datos = this.datos.filter((dato:any) => dato.tipopases == "VIP" || dato.tipopases == "Inv. Especial");
-        }
-        else if(this.tipoLista == 'j500'){
-          this.datos = this.datos.filter((dato:any) => dato.tipopases == "J500");
-        }
-        else if(this.tipoLista == 'internos'){
+        if(this.tipoLista == 'internos'){
           this.datos = this.datos.filter((dato:any) => dato.tipopases == "Vip");
+        }
+        else if(this.tipoLista == 'general'){
+          this.datos = this.datos.filter((dato:any) => dato.tipopases != "Vip");
         }
         else{
           this.datos = null;
