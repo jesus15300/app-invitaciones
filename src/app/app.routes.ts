@@ -17,6 +17,10 @@ export const routes: Routes = [
   {
     path: 'total-invitaciones-enviadas',
     loadComponent: () => import('./pages/reportes/total-invitaciones-enviadas/total-invitaciones-enviadas.page').then( m => m.TotalInvitacionesEnviadasPage)
+  },
+  {
+    path: 'check-in',
+    loadComponent: () => import('./pages/evento-aq/evento-aq.page').then( m => m.EventoAqPage)
   }
 
 
