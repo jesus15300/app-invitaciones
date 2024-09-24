@@ -135,15 +135,10 @@
     message="Actualizando Tabla"
   ></ion-toast>
   <!-- MODAL Lector -->
-<ion-modal class="datos" id="modal-lector" #modallector>
+<ion-modal class="mcheck" id="modal-lector" #modallector>
   <ng-template>
     <div class="wrapper">
       <zxing-scanner (scanSuccess)="scanSuccessHandler($event)"></zxing-scanner>
-      <div class="btns">
-        <ion-button class="btn-confirmar" (click)="modallector.dismiss()">
-          <ion-label class="label-btn">Cerrar</ion-label>
-        </ion-button>
-      </div>
     </div>
   </ng-template>
   </ion-modal>
