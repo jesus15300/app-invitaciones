@@ -178,6 +178,12 @@ ion-modal#modal-c {
   --border-radius: 6px;
   --margin: autio;
 }
+ion-modal#modal-lector {
+  --width: 90%;
+  --height: auto !important;
+  --border-radius: 6px;
+  --margin: autio;
+}
 ion-modal.mcheck {
   .wrapper{
     flex: 1;
